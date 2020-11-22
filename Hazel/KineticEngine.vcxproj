@@ -55,22 +55,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\KineticEngine\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\KineticEngine\</IntDir>
+    <OutDir>..\bin\Debug-windows-${cfg.architecture}\KineticEngine\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-${cfg.architecture}\KineticEngine\</IntDir>
     <TargetName>KineticEngine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\KineticEngine\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\KineticEngine\</IntDir>
+    <OutDir>..\bin\Release-windows-${cfg.architecture}\KineticEngine\</OutDir>
+    <IntDir>..\bin-int\Release-windows-${cfg.architecture}\KineticEngine\</IntDir>
     <TargetName>KineticEngine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\KineticEngine\</OutDir>
-    <IntDir>..\bin-int\Dist-windows-x86_64\KineticEngine\</IntDir>
+    <OutDir>..\bin\Dist-windows-${cfg.architecture}\KineticEngine\</OutDir>
+    <IntDir>..\bin-int\Dist-windows-${cfg.architecture}\KineticEngine\</IntDir>
     <TargetName>KineticEngine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;KE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\KineticEngine\src\vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -88,10 +88,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\KineticEngine\KineticEngine.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug-windows-${cfg.architecture}\KineticEngine\KineticEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\KineticEngine\KineticEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\KineticEngine\KineticEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\KineticEngine\KineticEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll ..\bin\Debug-windows-${cfg.architecture}\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll ..\bin\Debug-windows-${cfg.architecture}\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;KE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\KineticEngine\src\vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -112,10 +112,10 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Release-windows-x86_64\KineticEngine\KineticEngine.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release-windows-${cfg.architecture}\KineticEngine\KineticEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\KineticEngine\KineticEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\KineticEngine\KineticEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\KineticEngine\KineticEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll ..\bin\Release-windows-${cfg.architecture}\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll ..\bin\Release-windows-${cfg.architecture}\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -123,7 +123,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;KE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\KineticEngine\src\vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -136,22 +136,22 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\KineticEngine\KineticEngine.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Dist-windows-${cfg.architecture}\KineticEngine\KineticEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\KineticEngine\KineticEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\KineticEngine\KineticEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\KineticEngine\KineticEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll ..\bin\Dist-windows-${cfg.architecture}\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-${cfg.architecture}\KineticEngine\KineticEngine.dll ..\bin\Dist-windows-${cfg.architecture}\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\KineticEngine.h" />
-    <ClInclude Include="src\KineticEngine\Application.h" />
-    <ClInclude Include="src\KineticEngine\Core.h" />
-    <ClInclude Include="src\KineticEngine\EntryPoint.h" />
-    <ClInclude Include="src\KineticEngine\Log.h" />
+    <ClInclude Include="..\KineticEngine\src\KineticEngine.h" />
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\Application.h" />
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\Core.h" />
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\EntryPoint.h" />
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\Log.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\KineticEngine\Application.cpp" />
-    <ClCompile Include="src\KineticEngine\Log.cpp" />
+    <ClCompile Include="..\KineticEngine\src\KineticEngine\Application.cpp" />
+    <ClCompile Include="..\KineticEngine\src\KineticEngine\Log.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

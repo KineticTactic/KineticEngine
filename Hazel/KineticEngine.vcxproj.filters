@@ -6,25 +6,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\KineticEngine.h" />
-    <ClInclude Include="src\KineticEngine\Application.h">
+    <ClInclude Include="..\KineticEngine\src\KineticEngine.h" />
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\Application.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core.h">
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\Core.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\EntryPoint.h">
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\EntryPoint.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Log.h">
+    <ClInclude Include="..\KineticEngine\src\KineticEngine\Log.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\KineticEngine\Application.cpp">
+    <ClCompile Include="..\KineticEngine\src\KineticEngine\Application.cpp">
       <Filter>KineticEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\Log.cpp">
+    <ClCompile Include="..\KineticEngine\src\KineticEngine\Log.cpp">
       <Filter>KineticEngine</Filter>
     </ClCompile>
   </ItemGroup>
