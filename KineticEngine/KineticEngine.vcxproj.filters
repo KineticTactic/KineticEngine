@@ -4,6 +4,9 @@
     <Filter Include="KineticEngine">
       <UniqueIdentifier>{2255C3C4-8E15-3FFB-5750-8878C3CF83D7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KineticEngine\Window">
+      <UniqueIdentifier>{C9075C9C-B596-E565-5EB5-F9604A23F60B}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\KineticEngine.h" />
@@ -19,6 +22,13 @@
     <ClInclude Include="src\KineticEngine\Log.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Window\Window.h">
+      <Filter>KineticEngine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Events\Event.h" />
+    <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\KineticEngine\Events\KeyEvent.h" />
+    <ClInclude Include="src\KineticEngine\Events\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
@@ -26,6 +36,9 @@
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Log.cpp">
       <Filter>KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Window\Window.cpp">
+      <Filter>KineticEngine\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

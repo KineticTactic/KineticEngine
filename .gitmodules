@@ -1,0 +1,3 @@
+[submodule "KineticEngine/vendor/GLFW"]
+	path = KineticEngine/vendor/GLFW
+	url = https://github.com/TheCherno/GLFW

@@ -9,6 +9,13 @@ workspace "KineticEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "KineticEngine/vendor/GLFW/include"
+IncludeDir["GLAD"] = "KineticEngine/vendor/GLAD/include"
+
+include "KineticEngine/vendor/GLFW"
+include "KineticEngine/vendor/GLAD"
+
 project "KineticEngine"
 	location "KineticEngine"
 	kind "SharedLib"
@@ -23,7 +30,16 @@ project "KineticEngine"
 	}
 
 	includedirs {
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
+	}
+
+	links {
+		"GLFW",
+		"GLAD",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -33,7 +49,8 @@ project "KineticEngine"
 
 		defines {
 			"KE_PLATFORM_WINDOWS",
-			"KE_BUILD_DLL"
+			"KE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {
@@ -69,7 +86,8 @@ project "Sandbox"
 
 	includedirs {
 		"KineticEngine/vendor/spdlog/include",
-		"KineticEngine/src"
+		"KineticEngine/src",
+		"%{IncludeDir.GLFW}"
 	}
 
 	links {

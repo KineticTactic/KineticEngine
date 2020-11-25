@@ -24,11 +24,11 @@ namespace KE {
 #define KE_CORE_INFO(...)	::KE::Log::getCoreLogger()->info(__VA_ARGS__)
 #define KE_CORE_WARN(...)	::KE::Log::getCoreLogger()->warn(__VA_ARGS__)
 #define KE_CORE_ERROR(...)	::KE::Log::getCoreLogger()->error(__VA_ARGS__)
-#define KE_CORE_FATAL(...)	::KE::Log::getCoreLogger()->fatal(__VA_ARGS__)
+#define KE_CORE_FATAL(...)	::KE::Log::getCoreLogger()->critical(__VA_ARGS__)
 
 // Client logging macros
 #define KE_TRACE(...)		::KE::Log::getClientLogger()->trace(__VA_ARGS__)
 #define KE_INFO(...)		::KE::Log::getClientLogger()->info(__VA_ARGS__)
 #define KE_WARN(...)		::KE::Log::getClientLogger()->warn(__VA_ARGS__)
 #define KE_ERROR(...)		::KE::Log::getClientLogger()->error(__VA_ARGS__)
-#define KE_FATAL(...)		::KE::Log::getClientLogger()->fatal(__VA_ARGS__)
+#define KE_FATAL(...)		::KE::Log::getClientLogger()->critical(__VA_ARGS__)
