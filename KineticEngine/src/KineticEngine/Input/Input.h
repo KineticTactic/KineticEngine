@@ -1,8 +1,8 @@
 #pragma once
 
+#include <utility>
 #include "KineticEngine/Core.h"
 
-#include <utility>
 
 namespace KE {
 	class KE_API Input {

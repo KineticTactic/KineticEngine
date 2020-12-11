@@ -43,9 +43,6 @@
     <ClInclude Include="src\KineticEngine\ImGui\ImGuiLayer.h">
       <Filter>KineticEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.h">
-      <Filter>KineticEngine\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\KineticEngine\Input\Input.h">
       <Filter>KineticEngine\Input</Filter>
     </ClInclude>
@@ -72,10 +69,10 @@
     <ClCompile Include="src\KineticEngine\Application.cpp">
       <Filter>KineticEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\ImGui\ImGuiLayer.cpp">
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiBuild.cpp">
       <Filter>KineticEngine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.cpp">
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiLayer.cpp">
       <Filter>KineticEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Input\Input.cpp">

@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef KE_PLATFORM_WINDOWS
+#if HZ_DYNAMIC_LINK
 #ifdef KE_BUILD_DLL
 #define KE_API __declspec(dllexport)
 #else 
 #define KE_API __declspec(dllimport)
+#endif
+#else
+#define KE_API 
 #endif
 #else
 #error Kinetic Engine only supports Windows!

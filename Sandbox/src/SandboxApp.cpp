@@ -1,4 +1,5 @@
 #include <KineticEngine.h>
+#include <imgui/imgui.h>
 
 class ExampleLayer : public KE::Layer {
 public:
@@ -6,14 +7,17 @@ public:
 		: Layer("Example") {
 	}
 
-	void OnUpdate() override {
-		//KE_INFO("ExampleLayer::Update");
-		if (KE::Input::IsKeyPressed(KE_KEY_A)) {
-			KE_TRACE("A KEY PRESSED!!!!");
-		}
+	virtual void OnUpdate() override {
+
 	}
 
-	void OnEvent(KE::Event& event) override {
+	virtual void OnImGuiRender() override {
+		ImGui::Begin("From Sandbox");
+		ImGui::Text("Hello Sandbox!");
+		ImGui::End();
+	}
+
+	virtual void OnEvent(KE::Event& event) override {
 		//KE_TRACE("{0}", event);
 	}
 };
@@ -22,7 +26,6 @@ class Sandbox : public KE::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
-		PushOverlay(new KE::ImGuiLayer());
 	}
 
 	~Sandbox() {

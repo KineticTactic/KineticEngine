@@ -1,12 +1,12 @@
 #pragma once
 
-#include "KineticEngine/Core.h"
 #include <string>
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 #include <ostream>
 #include <sstream>
 #include <functional>
+#include "KineticEngine/Core.h"
 
 
 namespace KE {
