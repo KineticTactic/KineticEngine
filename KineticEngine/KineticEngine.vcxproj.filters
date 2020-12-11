@@ -4,6 +4,12 @@
     <Filter Include="KineticEngine">
       <UniqueIdentifier>{2255C3C4-8E15-3FFB-5750-8878C3CF83D7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KineticEngine\Events">
+      <UniqueIdentifier>{C6A64573-B235-CF3C-5B54-E33747C2DFE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KineticEngine\ImGui">
+      <UniqueIdentifier>{CC9B73CD-38FD-50DB-C16A-978D2DCB879A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="KineticEngine\Window">
       <UniqueIdentifier>{C9075C9C-B596-E565-5EB5-F9604A23F60B}</UniqueIdentifier>
     </Filter>
@@ -19,19 +25,49 @@
     <ClInclude Include="src\KineticEngine\EntryPoint.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h">
+      <Filter>KineticEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Events\Event.h">
+      <Filter>KineticEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Events\KeyEvent.h">
+      <Filter>KineticEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Events\MouseEvent.h">
+      <Filter>KineticEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\ImGui\ImGuiLayer.h">
+      <Filter>KineticEngine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Layer.h">
+      <Filter>KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\LayerStack.h">
+      <Filter>KineticEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Log.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Window\Window.h">
       <Filter>KineticEngine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Events\Event.h" />
-    <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\KineticEngine\Events\KeyEvent.h" />
-    <ClInclude Include="src\KineticEngine\Events\MouseEvent.h" />
+    <ClInclude Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\KineticEngine\Input\Input.h" />
+    <ClInclude Include="src\KineticEngine\KeyCodes.h" />
+    <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
+      <Filter>KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>KineticEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Layer.cpp">
+      <Filter>KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\LayerStack.cpp">
       <Filter>KineticEngine</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Log.cpp">
@@ -40,5 +76,7 @@
     <ClCompile Include="src\KineticEngine\Window\Window.cpp">
       <Filter>KineticEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\KineticEngine\Input\Input.cpp" />
   </ItemGroup>
 </Project>

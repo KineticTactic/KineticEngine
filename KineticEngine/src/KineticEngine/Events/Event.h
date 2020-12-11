@@ -13,7 +13,7 @@ namespace KE {
 	enum class EventType {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -26,21 +26,23 @@ namespace KE {
 		EventCategoryMouseButton = BIT(4)
 	};
 
-#define EVENT_CLASS_TYPE(type) static EventType getStaticType() { return EventType::##type; }\
-								virtual EventType getEventType() const override { return getStaticType(); }\
-								virtual const char* getName() const override { return #type; }
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
+								virtual EventType GetEventType() const override { return GetStaticType(); }\
+								virtual const char* GetName() const override { return #type; }
 
-#define EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
+#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 	class KE_API Event {
 		friend class EventDispatcher;
 	public:
-		virtual EventType getEventType() const = 0;
-		virtual const char* getName() const = 0;
-		virtual int getCategoryFlags() const = 0;
-		virtual std::string toString() const { return getName(); }
+		bool Handled = false;
 
-		inline bool isInCategory(EventCategory category) { return getCategoryFlags() & category; }
+		virtual EventType GetEventType() const = 0;
+		virtual const char* GetName() const = 0;
+		virtual int GetCategoryFlags() const = 0;
+		virtual std::string ToString() const { return GetName(); }
+
+		inline bool IsInCategory(EventCategory category) { return GetCategoryFlags() & category; }
 
 	protected:
 		bool m_Handled = false;
@@ -55,8 +57,8 @@ namespace KE {
 			: m_Event(event) {}
 
 		template<typename T>
-		bool dispatch(EventFn<T> func) {
-			if (m_Event.getEventType() == T::getStaticType()) {
+		bool Dispatch(EventFn<T> func) {
+			if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}
@@ -68,6 +70,6 @@ namespace KE {
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
-		return os << e.toString();
+		return os << e.ToString();
 	}
 }

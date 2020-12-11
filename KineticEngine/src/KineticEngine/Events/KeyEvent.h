@@ -8,7 +8,7 @@ namespace KE {
 
 	class KE_API KeyEvent : public Event {
 	public:
-		inline int getKeyCode() const { return m_KeyCode; }
+		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
@@ -23,9 +23,9 @@ namespace KE {
 		KeyPressedEvent(int keycode, int repeatCount)
 			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
-		inline int getRepeatCount() const { return m_RepeatCount; }
+		inline int GetRepeatCount() const { return m_RepeatCount; }
 
-		std::string toString() const override {
+		std::string ToString() const override {
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
 			return ss.str();
@@ -41,7 +41,7 @@ namespace KE {
 		KeyReleasedEvent(int keycode)
 			: KeyEvent(keycode) {}
 
-		std::string toString() const override
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << m_KeyCode;
@@ -49,5 +49,19 @@ namespace KE {
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
+	};
+
+	class KE_API KeyTypedEvent : public KeyEvent {
+	public:
+		KeyTypedEvent(int keycode)
+			: KeyEvent(keycode) {}
+
+		std::string ToString() const override {
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
 	};
 }

@@ -1,9 +1,11 @@
 #pragma once
 
 #include <string>
+#include <functional>
 #include <GLFW/glfw3.h>
 
 #include "../Core.h"
+#include "KineticEngine/Events/Event.h"
 
 namespace KE {
 
@@ -12,11 +14,30 @@ namespace KE {
 		Window(int width, int height, std::string title);
 		~Window();
 
-		void onUpdate();
+		using EventCallbackFn = std::function<void(Event&)>;
 
-		static Window* create(int width, int height, std::string title);
+		void OnUpdate();
+
+		static Window* Create(int width, int height, std::string title);
+
+		void SetEventCallback(const EventCallbackFn& callback);
+
+		inline unsigned int GetWidth() { return this->m_Data.Width; }
+		inline unsigned int GetHeight() { return this->m_Data.Height; }
+		inline GLFWwindow* GetNativeWindow() { return this->m_Window; }
 
 	private:
 		GLFWwindow* m_Window;
+
+		struct WindowData
+		{
+			std::string Title;
+			unsigned int Width, Height;
+			bool VSync;
+
+			EventCallbackFn EventCallback;
+		};
+
+		WindowData m_Data;
 	};
 }

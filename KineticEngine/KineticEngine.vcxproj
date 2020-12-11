@@ -79,10 +79,11 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;GLFW_INCLUDE_NONE;KE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -100,13 +101,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;GLFW_INCLUDE_NONE;KE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -125,13 +127,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;GLFW_INCLUDE_NONE;KE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -146,6 +149,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\KineticEngine\Input\Input.h" />
     <ClInclude Include="src\KineticEngine.h" />
     <ClInclude Include="src\KineticEngine\Application.h" />
     <ClInclude Include="src\KineticEngine\Core.h" />
@@ -154,11 +158,22 @@
     <ClInclude Include="src\KineticEngine\Events\Event.h" />
     <ClInclude Include="src\KineticEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\KineticEngine\Events\MouseEvent.h" />
+    <ClInclude Include="src\KineticEngine\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\KineticEngine\KeyCodes.h" />
+    <ClInclude Include="src\KineticEngine\Layer.h" />
+    <ClInclude Include="src\KineticEngine\LayerStack.h" />
     <ClInclude Include="src\KineticEngine\Log.h" />
+    <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\KineticEngine\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\KineticEngine\Input\Input.cpp" />
     <ClCompile Include="src\KineticEngine\Application.cpp" />
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\KineticEngine\Layer.cpp" />
+    <ClCompile Include="src\KineticEngine\LayerStack.cpp" />
     <ClCompile Include="src\KineticEngine\Log.cpp" />
     <ClCompile Include="src\KineticEngine\Window\Window.cpp" />
   </ItemGroup>
@@ -168,6 +183,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\GLAD\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

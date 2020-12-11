@@ -12,9 +12,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "KineticEngine/vendor/GLFW/include"
 IncludeDir["GLAD"] = "KineticEngine/vendor/GLAD/include"
+IncludeDir["ImGui"] = "KineticEngine/vendor/imgui"
 
 include "KineticEngine/vendor/GLFW"
 include "KineticEngine/vendor/GLAD"
+include "KineticEngine/vendor/imgui"
 
 project "KineticEngine"
 	location "KineticEngine"
@@ -33,12 +35,14 @@ project "KineticEngine"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links {
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -59,14 +63,17 @@ project "KineticEngine"
 
 	filter "configurations:Debug"
 		defines "KE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "KE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "KE_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 
@@ -105,12 +112,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "KE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "KE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "KE_DIST"
+		buildoptions "/MD"
 		optimize "On"
