@@ -1,6 +1,7 @@
 #include "Window.h"
 
 #include <glad/glad.h>
+
 #include "KineticEngine/Log.h"
 #include "KineticEngine/Events/ApplicationEvent.h"
 #include "KineticEngine/Events/KeyEvent.h"
@@ -32,14 +33,10 @@ namespace KE {
 			glfwTerminate();
 		}
 
-		glfwMakeContextCurrent(m_Window);
+		m_Context = new GraphicsContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		if (!status) {
-			KE_CORE_FATAL("Failed to Load GLAD!");
-		}
-
 		// Set GLFW callbacks
 
 		// Window Resize
@@ -129,7 +126,7 @@ namespace KE {
 
 	void Window::OnUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	Window* Window::Create(int width, int height, std::string title) {

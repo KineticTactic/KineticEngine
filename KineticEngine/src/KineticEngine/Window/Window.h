@@ -2,9 +2,9 @@
 
 #include <string>
 #include <functional>
-#include <GLFW/glfw3.h>
 
-#include "../Core.h"
+#include "KineticEngine/Renderer/GraphicsContext.h"
+#include "KineticEngine/Core.h"
 #include "KineticEngine/Events/Event.h"
 
 namespace KE {
@@ -28,6 +28,8 @@ namespace KE {
 
 	private:
 		GLFWwindow* m_Window;
+
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

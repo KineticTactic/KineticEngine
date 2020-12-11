@@ -152,6 +152,7 @@
     <ClInclude Include="src\KineticEngine\LayerStack.h" />
     <ClInclude Include="src\KineticEngine\Log.h" />
     <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\KineticEngine\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClCompile Include="src\KineticEngine\Layer.cpp" />
     <ClCompile Include="src\KineticEngine\LayerStack.cpp" />
     <ClCompile Include="src\KineticEngine\Log.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\KineticEngine\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>

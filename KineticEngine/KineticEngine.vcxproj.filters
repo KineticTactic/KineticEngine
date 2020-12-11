@@ -64,6 +64,7 @@
     <ClInclude Include="src\KineticEngine\Window\Window.h">
       <Filter>KineticEngine\Window</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
@@ -90,5 +91,6 @@
     <ClCompile Include="src\KineticEngine\Window\Window.cpp">
       <Filter>KineticEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
   </ItemGroup>
 </Project>
