@@ -13,6 +13,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "KineticEngine/vendor/GLFW/include"
 IncludeDir["GLAD"] = "KineticEngine/vendor/GLAD/include"
 IncludeDir["ImGui"] = "KineticEngine/vendor/imgui"
+IncludeDir["glm"] = "KineticEngine/vendor/glm"
 
 include "KineticEngine/vendor/GLFW"
 include "KineticEngine/vendor/GLAD"
@@ -36,7 +37,8 @@ project "KineticEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links {
@@ -94,7 +96,8 @@ project "Sandbox"
 	includedirs {
 		"KineticEngine/vendor/spdlog/include",
 		"KineticEngine/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glm}"
 	}
 
 	links {

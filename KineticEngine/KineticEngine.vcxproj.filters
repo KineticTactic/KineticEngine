@@ -10,6 +10,9 @@
     <Filter Include="KineticEngine\ImGui">
       <UniqueIdentifier>{CC9B73CD-38FD-50DB-C16A-978D2DCB879A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KineticEngine\Input">
+      <UniqueIdentifier>{A1D674CD-0D38-52DB-96A5-988D0206899A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="KineticEngine\Window">
       <UniqueIdentifier>{C9075C9C-B596-E565-5EB5-F9604A23F60B}</UniqueIdentifier>
     </Filter>
@@ -40,6 +43,15 @@
     <ClInclude Include="src\KineticEngine\ImGui\ImGuiLayer.h">
       <Filter>KineticEngine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.h">
+      <Filter>KineticEngine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Input\Input.h">
+      <Filter>KineticEngine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\KeyCodes.h">
+      <Filter>KineticEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Layer.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
@@ -49,13 +61,12 @@
     <ClInclude Include="src\KineticEngine\Log.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\MouseButtonCodes.h">
+      <Filter>KineticEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Window\Window.h">
       <Filter>KineticEngine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="src\KineticEngine\Input\Input.h" />
-    <ClInclude Include="src\KineticEngine\KeyCodes.h" />
-    <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
@@ -63,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiLayer.cpp">
       <Filter>KineticEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.cpp">
+      <Filter>KineticEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Input\Input.cpp">
+      <Filter>KineticEngine\Input</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Layer.cpp">
       <Filter>KineticEngine</Filter>
@@ -76,7 +93,5 @@
     <ClCompile Include="src\KineticEngine\Window\Window.cpp">
       <Filter>KineticEngine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\ImGui\ImGuiOpenGLRenderer.cpp" />
-    <ClCompile Include="src\KineticEngine\Input\Input.cpp" />
   </ItemGroup>
 </Project>
