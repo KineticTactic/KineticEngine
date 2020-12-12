@@ -80,6 +80,9 @@
       <Filter>KineticEngine\Window</Filter>
     </ClInclude>
     <ClInclude Include="src\kepch.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
@@ -119,5 +122,8 @@
       <Filter>KineticEngine\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\kepch.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\RendererAPI.cpp" />
   </ItemGroup>
 </Project>
