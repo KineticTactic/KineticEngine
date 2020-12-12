@@ -1,14 +1,16 @@
 #pragma once
 
-#include "Core.h"
-#include "LayerStack.h"
-#include "Window/Window.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
+#include "KineticEngine/Core.h"
+#include "KineticEngine/LayerStack.h"
+#include "KineticEngine/Window/Window.h"
+#include "KineticEngine/Events/Event.h"
+#include "KineticEngine/Events/ApplicationEvent.h"
 
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
+#include "KineticEngine/Renderer/Shader.h"
+#include "KineticEngine/Renderer/Buffer.h"
+#include "KineticEngine/Renderer/VertexArray.h"
+#include "KineticEngine/Renderer/OrthographicCamera.h"
+
 
 #include "ImGui/ImGuiLayer.h"
 
@@ -42,6 +44,8 @@ namespace KE {
 		std::shared_ptr<VertexBuffer> m_VertexBuffer;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 		std::shared_ptr<Shader> m_Shader;
+
+		OrthographicCamera m_Camera;
 
 	private:
 		static Application* s_Instance;

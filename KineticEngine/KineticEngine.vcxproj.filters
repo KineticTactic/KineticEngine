@@ -83,6 +83,7 @@
     <ClInclude Include="src\KineticEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\KineticEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
@@ -125,5 +126,6 @@
     <ClCompile Include="src\KineticEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

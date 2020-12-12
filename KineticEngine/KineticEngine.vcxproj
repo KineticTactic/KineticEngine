@@ -157,6 +157,7 @@
     <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\KineticEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\RendererAPI.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="src\KineticEngine\Log.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\RendererAPI.cpp" />
