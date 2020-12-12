@@ -73,7 +73,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>kepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;GLFW_INCLUDE_NONE;KE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -92,7 +93,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>kepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;GLFW_INCLUDE_NONE;KE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -115,7 +117,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>kepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>KE_PLATFORM_WINDOWS;KE_BUILD_DLL;GLFW_INCLUDE_NONE;KE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -152,8 +155,12 @@
     <ClInclude Include="src\KineticEngine\LayerStack.h" />
     <ClInclude Include="src\KineticEngine\Log.h" />
     <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\VertexArray.h" />
     <ClInclude Include="src\KineticEngine\Window\Window.h" />
+    <ClInclude Include="src\kepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp" />
@@ -163,8 +170,14 @@
     <ClCompile Include="src\KineticEngine\Layer.cpp" />
     <ClCompile Include="src\KineticEngine\LayerStack.cpp" />
     <ClCompile Include="src\KineticEngine\Log.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\KineticEngine\Window\Window.cpp" />
+    <ClCompile Include="src\kepch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

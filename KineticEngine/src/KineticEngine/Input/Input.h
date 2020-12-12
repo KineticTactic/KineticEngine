@@ -1,6 +1,5 @@
 #pragma once
 
-#include <utility>
 #include "KineticEngine/Core.h"
 
 

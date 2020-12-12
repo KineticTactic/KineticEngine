@@ -1,12 +1,14 @@
 #pragma once
 
-#include <memory>
-
 #include "Core.h"
 #include "LayerStack.h"
 #include "Window/Window.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
+
+#include "Renderer/Shader.h"
+#include "Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
 
 #include "ImGui/ImGuiLayer.h"
 
@@ -35,6 +37,11 @@ namespace KE {
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		std::shared_ptr<VertexArray> m_VertexArray;
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
 
 	private:
 		static Application* s_Instance;

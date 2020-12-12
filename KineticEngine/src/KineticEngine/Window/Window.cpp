@@ -1,8 +1,8 @@
+#include "kepch.h"
 #include "Window.h"
 
 #include <glad/glad.h>
 
-#include "KineticEngine/Log.h"
 #include "KineticEngine/Events/ApplicationEvent.h"
 #include "KineticEngine/Events/KeyEvent.h"
 #include "KineticEngine/Events/MouseEvent.h"

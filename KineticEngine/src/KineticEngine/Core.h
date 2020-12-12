@@ -14,6 +14,10 @@
 #error Kinetic Engine only supports Windows!
 #endif
 
+#ifdef KE_DEBUG
+#define KE_ENABLE_ASSERTS
+#endif
+
 #ifdef KE_ENABLE_ASSERTS
 #define KE_ASSERT(x, ...) { if(!(x)) { KE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #define KE_CORE_ASSERT(x, ...) { if(!(x)) { KE_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

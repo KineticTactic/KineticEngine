@@ -1,11 +1,9 @@
 #pragma once
 
-#include <string>
+#include <kepch.h>
+
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
-#include <ostream>
-#include <sstream>
-#include <functional>
 #include "KineticEngine/Core.h"
 
 

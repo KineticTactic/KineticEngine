@@ -1,3 +1,4 @@
+#include "kepch.h"
 #include "ImGuiLayer.h"
 
 #include <imgui.h>
@@ -6,7 +7,6 @@
 
 #include "KineticEngine/Application.h"
 
-#include "KineticEngine/Log.h"
 
 // Temporary
 #include <GLFW/glfw3.h>

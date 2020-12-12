@@ -1,8 +1,5 @@
 #pragma once
 
-#include <string>
-#include <functional>
-
 #include "KineticEngine/Renderer/GraphicsContext.h"
 #include "KineticEngine/Core.h"
 #include "KineticEngine/Events/Event.h"
@@ -31,8 +28,7 @@ namespace KE {
 
 		GraphicsContext* m_Context;
 
-		struct WindowData
-		{
+		struct WindowData {
 			std::string Title;
 			unsigned int Width, Height;
 			bool VSync;

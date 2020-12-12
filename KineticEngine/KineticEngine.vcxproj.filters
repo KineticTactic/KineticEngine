@@ -13,6 +13,9 @@
     <Filter Include="KineticEngine\Input">
       <UniqueIdentifier>{A1D674CD-0D38-52DB-96A5-988D0206899A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KineticEngine\Renderer">
+      <UniqueIdentifier>{087F4552-F478-6EA4-DDE5-04B5C97ED410}</UniqueIdentifier>
+    </Filter>
     <Filter Include="KineticEngine\Window">
       <UniqueIdentifier>{C9075C9C-B596-E565-5EB5-F9604A23F60B}</UniqueIdentifier>
     </Filter>
@@ -61,10 +64,22 @@
     <ClInclude Include="src\KineticEngine\MouseButtonCodes.h">
       <Filter>KineticEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\Buffer.h">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\Shader.h">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\VertexArray.h">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Window\Window.h">
       <Filter>KineticEngine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\kepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Application.cpp">
@@ -88,9 +103,21 @@
     <ClCompile Include="src\KineticEngine\Log.cpp">
       <Filter>KineticEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\Shader.cpp">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\VertexArray.cpp">
+      <Filter>KineticEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\KineticEngine\Window\Window.cpp">
       <Filter>KineticEngine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\kepch.cpp" />
   </ItemGroup>
 </Project>

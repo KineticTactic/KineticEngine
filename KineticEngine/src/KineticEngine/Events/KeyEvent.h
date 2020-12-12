@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace KE {
 
 	class KE_API KeyEvent : public Event {

@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace KE {
 
 	class KE_API MouseMovedEvent : public Event {
@@ -26,8 +24,7 @@ namespace KE {
 		float m_MouseX, m_MouseY;
 	};
 
-	class KE_API MouseScrolledEvent : public Event
-	{
+	class KE_API MouseScrolledEvent : public Event {
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
 			: m_XOffset(xOffset), m_YOffset(yOffset) {}

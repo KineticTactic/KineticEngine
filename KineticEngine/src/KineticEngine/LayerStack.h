@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "KineticEngine/Core.h"
 #include "Layer.h"
 
