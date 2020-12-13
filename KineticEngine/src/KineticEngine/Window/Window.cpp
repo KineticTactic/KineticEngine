@@ -118,6 +118,8 @@ namespace KE {
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 			});
+
+		//glfwSwapInterval(0);
 	}
 
 	Window::~Window() {

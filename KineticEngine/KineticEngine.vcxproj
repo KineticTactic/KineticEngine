@@ -143,6 +143,7 @@
     <ClInclude Include="src\KineticEngine.h" />
     <ClInclude Include="src\KineticEngine\Application.h" />
     <ClInclude Include="src\KineticEngine\Core.h" />
+    <ClInclude Include="src\KineticEngine\Core\Timestep.h" />
     <ClInclude Include="src\KineticEngine\EntryPoint.h" />
     <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\KineticEngine\Events\Event.h" />

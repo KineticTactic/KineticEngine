@@ -1,6 +1,7 @@
 #pragma once
 
 #include "KineticEngine/Core.h"
+
 #include "KineticEngine/LayerStack.h"
 #include "KineticEngine/Window/Window.h"
 #include "KineticEngine/Events/Event.h"
@@ -34,18 +35,14 @@ namespace KE {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<Shader> m_Shader;
-
-		OrthographicCamera m_Camera;
+		float m_LastFrameTime = 0.f;
 
 	private:
 		static Application* s_Instance;

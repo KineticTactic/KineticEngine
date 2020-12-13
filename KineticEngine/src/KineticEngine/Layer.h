@@ -2,6 +2,7 @@
 
 #include "KineticEngine/Core.h"
 #include "KineticEngine/Events/Event.h"
+#include "KineticEngine/Core/Timestep.h"
 
 namespace KE {
 	class KE_API Layer {
@@ -11,7 +12,7 @@ namespace KE {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
