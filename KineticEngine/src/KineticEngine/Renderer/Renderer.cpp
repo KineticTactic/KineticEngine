@@ -5,6 +5,10 @@ namespace KE {
 
 	Renderer::SceneData* Renderer::m_SceneData = new SceneData;
 
+	void Renderer::Init() {
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera) {
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
@@ -13,7 +17,7 @@ namespace KE {
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform) {
+	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform) {
 		shader->Bind();
 		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		shader->UploadUniformMat4("u_Transform", transform);

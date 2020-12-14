@@ -1,6 +1,7 @@
 #include <KineticEngine.h>
 #include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public KE::Layer {
 public:
@@ -8,7 +9,7 @@ public:
 		: Layer("Example"),
 		m_Camera(-1.6f, 1.6f, -0.9f, 0.9f),
 		m_CameraPosition(0.0f),
-		triPosition(0.f) {
+		m_SquareColor(0.f, 0.f, 0.f) {
 		m_TriVertexArray.reset(KE::VertexArray::Create());
 
 
@@ -18,41 +19,37 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<KE::VertexBuffer> vertexBuffer;
+		KE::Ref<KE::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(KE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices)));
 		KE::BufferLayout layout = {
 				{ KE::ShaderDataType::Float3, "a_Position" },
-				{ KE::ShaderDataType::Float4, "a_Color" }
+				{ KE::ShaderDataType::Float2, "a_TexCoord" },
 		};
 		vertexBuffer->SetLayout(layout);
 		m_TriVertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<KE::IndexBuffer> indexBuffer;
+		KE::Ref<KE::IndexBuffer> indexBuffer;
 		indexBuffer.reset(KE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_TriVertexArray->SetIndexBuffer(indexBuffer);
 
 		// ---
 		m_SqVertexArray.reset(KE::VertexArray::Create());
 
-		float sqVertices[6 * 7] = {
-			 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 1.f, 1.f,
-			-0.5f,  0.5f, 0.0f, 0.0f, 0.5f, 1.f, 1.f,
-			-0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 1.f, 1.f,
-			 0.5f,  0.5f, 0.0f, 0.0f, 0.5f, 1.f, 1.f
+		float sqVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f,	0.0f, 1.0f
 		};
 
-		std::shared_ptr<KE::VertexBuffer> sqVertexBuffer;
+		KE::Ref<KE::VertexBuffer> sqVertexBuffer;
 		sqVertexBuffer.reset(KE::VertexBuffer::Create(sqVertices, sizeof(sqVertices)));
-		KE::BufferLayout sqLayout = {
-				{ KE::ShaderDataType::Float3, "a_Position" },
-				{ KE::ShaderDataType::Float4, "a_Color" }
-		};
-		sqVertexBuffer->SetLayout(sqLayout);
+		sqVertexBuffer->SetLayout(layout);
 		m_SqVertexArray->AddVertexBuffer(sqVertexBuffer);
 
-		uint32_t sqIndices[6] = { 0, 1, 2, 1, 0, 3 };
-		std::shared_ptr<KE::IndexBuffer> sqIndexBuffer;
+		uint32_t sqIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		KE::Ref<KE::IndexBuffer> sqIndexBuffer;
 		sqIndexBuffer.reset(KE::IndexBuffer::Create(sqIndices, sizeof(sqIndices) / sizeof(uint32_t)));
 		m_SqVertexArray->SetIndexBuffer(sqIndexBuffer);
 
@@ -62,17 +59,13 @@ public:
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
+			layout(location = 1) in vec2 a_TexCoord;
 
 			uniform mat4 u_ViewProjection;
 			uniform mat4 u_Transform;
 
-			out vec3 v_Position;
-			out vec4 v_Color;
 			void main()
 			{
-				v_Position = a_Position;
-				v_Color = a_Color;
 				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
@@ -81,16 +74,57 @@ public:
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
-			in vec3 v_Position;
-			in vec4 v_Color;
+
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_Shader.reset(new KE::Shader(vertexSrc, fragmentSrc));
+		m_FlatColorShader.reset(KE::Shader::Create(vertexSrc, fragmentSrc));
+
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(KE::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = KE::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_PusheenTexture = KE::Texture2D::Create("assets/textures/pusheen.png");
+		m_TextureShader->Bind();
+		m_TextureShader->UploadUniformInt("u_Texture", 0);
 	}
 
 	virtual void OnUpdate(KE::Timestep ts) override {
@@ -120,21 +154,33 @@ public:
 		KE::Renderer::BeginScene(m_Camera);
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.f), glm::vec3(0.05f));
+
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
 				glm::vec3 pos(x * 0.06f, y * 0.06f, 0.f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.f), pos) * scale;
-				KE::Renderer::Submit(m_Shader, m_SqVertexArray, transform);
+				KE::Renderer::Submit(m_FlatColorShader, m_SqVertexArray, transform);
 			}
 		}
+
+		m_Texture->Bind();
+		KE::Renderer::Submit(m_TextureShader, m_SqVertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
+		m_PusheenTexture->Bind();
+		KE::Renderer::Submit(m_TextureShader, m_SqVertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
 		//KE::Renderer::Submit(m_Shader, m_SqVertexArray);
-		scale = glm::scale(glm::mat4(1.f), glm::vec3(0.2f));
-		KE::Renderer::Submit(m_Shader, m_TriVertexArray, scale);
+		//m_Shader->UploadUniformFloat3("u_Color", { 0.8f, 0.2f, 0.3f });
+		//KE::Renderer::Submit(m_Shader, m_TriVertexArray, glm::scale(glm::mat4(1.f), glm::vec3(0.2f)));
+
 		KE::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override {
-
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	virtual void OnEvent(KE::Event& event) override {
@@ -142,9 +188,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<KE::VertexArray> m_TriVertexArray;
-	std::shared_ptr<KE::VertexArray> m_SqVertexArray;
-	std::shared_ptr<KE::Shader> m_Shader;
+	KE::Ref<KE::VertexArray> m_TriVertexArray;
+	KE::Ref<KE::VertexArray> m_SqVertexArray;
+	KE::Ref<KE::Shader> m_FlatColorShader, m_TextureShader;
+
+	KE::Ref<KE::Texture2D> m_Texture, m_PusheenTexture;
 
 	KE::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
@@ -152,7 +200,7 @@ private:
 	float m_CameraMoveSpeed = 2.f;
 	float m_CameraRotationSpeed = 50.0f;
 
-	glm::vec3 triPosition;
+	glm::vec3 m_SquareColor;
 };
 
 

@@ -14,6 +14,7 @@ IncludeDir["GLFW"] = "KineticEngine/vendor/GLFW/include"
 IncludeDir["GLAD"] = "KineticEngine/vendor/GLAD/include"
 IncludeDir["ImGui"] = "KineticEngine/vendor/imgui"
 IncludeDir["glm"] = "KineticEngine/vendor/glm"
+IncludeDir["stb_image"] = "KineticEngine/vendor/stb_image"
 
 include "KineticEngine/vendor/GLFW"
 include "KineticEngine/vendor/GLAD"
@@ -36,6 +37,10 @@ project "KineticEngine"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs {
@@ -44,7 +49,8 @@ project "KineticEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links {

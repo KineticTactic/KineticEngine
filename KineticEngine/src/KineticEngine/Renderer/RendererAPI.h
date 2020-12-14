@@ -7,9 +7,10 @@
 namespace KE {
 	class RendererAPI {
 	public:
+		void Init();
 		void SetClearColor(const glm::vec4& color);
 		void Clear();
 
-		void DrawIndexed(const std::shared_ptr<VertexArray>& vertexARray);
+		void DrawIndexed(const Ref<VertexArray>& vertexARray);
 	};
 }
