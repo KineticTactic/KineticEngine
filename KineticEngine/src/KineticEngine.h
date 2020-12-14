@@ -11,6 +11,8 @@
 
 #include "KineticEngine/Core/Timestep.h"
 
+#include "KineticEngine/OrthographicCameraController.h"
+
 // ------ Renderer ------------------
 
 #include "KineticEngine/Renderer/Renderer.h"

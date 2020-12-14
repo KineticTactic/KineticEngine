@@ -7,8 +7,11 @@
 #include <functional>
 
 #include <vector>
+#include <array>
+#include <fstream>
 #include <sstream>
 #include <string>
+#include <cstring>
 #include <unordered_map>
 #include <unordered_set>
 #include <cstdint>
