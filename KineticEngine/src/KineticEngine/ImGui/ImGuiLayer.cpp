@@ -5,7 +5,7 @@
 #include <examples/imgui_impl_glfw.h>
 #include <examples/imgui_impl_opengl3.h>
 
-#include "KineticEngine/Application.h"
+#include "KineticEngine/Core/Application.h"
 
 
 // Temporary
@@ -76,6 +76,6 @@ namespace KE {
 
 	void ImGuiLayer::OnImGuiRender() {
 		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		//ImGui::ShowDemoWindow(&show);
 	}
 }

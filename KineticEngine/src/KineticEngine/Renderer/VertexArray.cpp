@@ -71,7 +71,7 @@ namespace KE {
 		m_IndexBuffer = indexBuffer;
 	}
 
-	VertexArray* VertexArray::Create() {
-		return new VertexArray();
+	Ref<VertexArray> VertexArray::Create() {
+		return std::make_shared<VertexArray>();
 	}
 }

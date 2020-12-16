@@ -4,7 +4,7 @@
 
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 
 
 namespace KE {

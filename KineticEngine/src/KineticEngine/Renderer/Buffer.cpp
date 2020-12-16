@@ -23,8 +23,8 @@ namespace KE {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size) {
-		return new VertexBuffer(vertices, size);
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size) {
+		return std::make_shared<VertexBuffer>(vertices, size);
 	}
 
 	// -----------------
@@ -51,8 +51,8 @@ namespace KE {
 		return m_Count;
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size) {
-		return new IndexBuffer(indices, size);
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size) {
+		return std::make_shared<IndexBuffer>(indices, size);
 	}
 
 }

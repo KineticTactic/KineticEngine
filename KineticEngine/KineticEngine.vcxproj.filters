@@ -54,17 +54,8 @@
     <ClInclude Include="src\KineticEngine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Application.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
     <ClInclude Include="src\KineticEngine\Core\Timestep.h">
       <Filter>src\KineticEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\EntryPoint.h">
-      <Filter>src\KineticEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h">
       <Filter>src\KineticEngine\Events</Filter>
@@ -83,21 +74,6 @@
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Input\Input.h">
       <Filter>src\KineticEngine\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\KeyCodes.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Layer.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\LayerStack.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Log.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\MouseButtonCodes.h">
-      <Filter>src\KineticEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h">
       <Filter>src\KineticEngine\Renderer</Filter>
@@ -1374,12 +1350,34 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\OrthographicCameraController.h" />
+    <ClInclude Include="src\KineticEngine\Core\Application.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Core.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\EntryPoint.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\KeyCodes.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Layer.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\LayerStack.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Log.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\MouseButtonCodes.h">
+      <Filter>src\KineticEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\OrthographicCameraController.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\KineticEngine\Application.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiBuild.cpp">
       <Filter>src\KineticEngine\ImGui</Filter>
     </ClCompile>
@@ -1388,15 +1386,6 @@
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Input\Input.cpp">
       <Filter>src\KineticEngine\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\Layer.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\LayerStack.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\Log.cpp">
-      <Filter>src\KineticEngine</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
@@ -1434,6 +1423,19 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\KineticEngine\Core\Application.cpp">
+      <Filter>src\KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Core\Layer.cpp">
+      <Filter>src\KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Core\LayerStack.cpp">
+      <Filter>src\KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Core\Log.cpp">
+      <Filter>src\KineticEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

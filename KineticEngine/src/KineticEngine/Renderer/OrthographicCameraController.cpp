@@ -2,7 +2,7 @@
 #include "OrthographicCameraController.h"
 
 #include "KineticEngine/Input/Input.h"
-#include "KineticEngine/KeyCodes.h"
+#include "KineticEngine/Core/KeyCodes.h"
 
 namespace KE {
 

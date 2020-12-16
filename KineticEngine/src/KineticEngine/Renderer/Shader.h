@@ -16,15 +16,15 @@ namespace KE {
 		void Bind() const;
 		void Unbind() const;
 
-		void UploadUniformInt(const std::string& name, int value);
+		void SetInt(const std::string& name, int value);
 
-		void UploadUniformFloat(const std::string& name, float values);
-		void UploadUniformFloat2(const std::string& name, const glm::vec2& values);
-		void UploadUniformFloat3(const std::string& name, const glm::vec3& values);
-		void UploadUniformFloat4(const std::string& name, const glm::vec4& values);
+		void SetFloat(const std::string& name, float values);
+		void SetFloat2(const std::string& name, const glm::vec2& values);
+		void SetFloat3(const std::string& name, const glm::vec3& values);
+		void SetFloat4(const std::string& name, const glm::vec4& values);
 
-		void UploadUniformMat3(const std::string& name, const glm::mat3& matrix);
-		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
+		void SetMat3(const std::string& name, const glm::mat3& matrix);
+		void SetMat4(const std::string& name, const glm::mat4& matrix);
 
 		const std::string& GetName() { return m_Name; };
 

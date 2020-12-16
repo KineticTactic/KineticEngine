@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 
 
 namespace KE {

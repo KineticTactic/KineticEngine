@@ -16,7 +16,7 @@
 #include <unordered_set>
 #include <cstdint>
 
-#include "KineticEngine/Log.h"
+#include "KineticEngine/Core/Log.h"
 
 #ifdef KE_PLATFORM_WINDOW
 #include <Windows.h>

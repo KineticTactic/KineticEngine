@@ -1,8 +1,8 @@
 #pragma once
 
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 
-#include "KineticEngine/LayerStack.h"
+#include "KineticEngine/Core/LayerStack.h"
 #include "KineticEngine/Window/Window.h"
 #include "KineticEngine/Events/Event.h"
 #include "KineticEngine/Events/ApplicationEvent.h"
@@ -13,7 +13,7 @@
 #include "KineticEngine/Renderer/OrthographicCamera.h"
 
 
-#include "ImGui/ImGuiLayer.h"
+#include "KineticEngine/ImGui/ImGuiLayer.h"
 
 namespace KE {
 

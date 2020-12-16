@@ -2,7 +2,7 @@
 #include "Application.h"
 
 #include "KineticEngine/Renderer/Renderer.h"
-#include "Input/Input.h"
+#include "KineticEngine/Input/Input.h"
 #include "KineticEngine/Core/Timestep.h"
 
 namespace KE {

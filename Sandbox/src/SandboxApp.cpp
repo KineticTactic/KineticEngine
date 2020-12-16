@@ -1,15 +1,20 @@
 #include <KineticEngine.h>
+#include <KineticEngine/Core/EntryPoint.h>
+
 #include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
+#include "Pong/Pong.h"
 
 class ExampleLayer : public KE::Layer {
 public:
 	ExampleLayer()
 		: Layer("Example"),
 		m_CameraController(1280.0f / 720.0f, true),
-		m_SquareColor(0.f, 0.5f, 1.f) {
-		m_TriVertexArray.reset(KE::VertexArray::Create());
+		m_SquareColor(0.f, 0.5f, 1.f, 1.f) {
+		m_TriVertexArray = KE::VertexArray::Create();
 
 
 		float triangleVertices[3 * 7] = {
@@ -19,7 +24,7 @@ public:
 		};
 
 		KE::Ref<KE::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(KE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices)));
+		vertexBuffer = KE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices));
 		KE::BufferLayout layout = {
 				{ KE::ShaderDataType::Float3, "a_Position" },
 				{ KE::ShaderDataType::Float2, "a_TexCoord" },
@@ -29,11 +34,11 @@ public:
 
 		uint32_t indices[3] = { 0, 1, 2 };
 		KE::Ref<KE::IndexBuffer> indexBuffer;
-		indexBuffer.reset(KE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = KE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_TriVertexArray->SetIndexBuffer(indexBuffer);
 
 		// ---
-		m_SqVertexArray.reset(KE::VertexArray::Create());
+		m_SqVertexArray = KE::VertexArray::Create();
 
 		float sqVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -43,23 +48,23 @@ public:
 		};
 
 		KE::Ref<KE::VertexBuffer> sqVertexBuffer;
-		sqVertexBuffer.reset(KE::VertexBuffer::Create(sqVertices, sizeof(sqVertices)));
+		sqVertexBuffer = KE::VertexBuffer::Create(sqVertices, sizeof(sqVertices));
 		sqVertexBuffer->SetLayout(layout);
 		m_SqVertexArray->AddVertexBuffer(sqVertexBuffer);
 
 		uint32_t sqIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		KE::Ref<KE::IndexBuffer> sqIndexBuffer;
-		sqIndexBuffer.reset(KE::IndexBuffer::Create(sqIndices, sizeof(sqIndices) / sizeof(uint32_t)));
+		sqIndexBuffer = KE::IndexBuffer::Create(sqIndices, sizeof(sqIndices) / sizeof(uint32_t));
 		m_SqVertexArray->SetIndexBuffer(sqIndexBuffer);
 
 
 		auto flatColorShader = m_ShaderLibrary.Load("assets/shaders/FlatColor.glsl");
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
-		m_Texture = KE::Texture2D::Create("assets/textures/Checkerboard.png");
-		m_PusheenTexture = KE::Texture2D::Create("assets/textures/Corona.png");
+		m_Texture = KE::Texture2D::Create("assets/textures/Container.png");
+		m_PusheenTexture = KE::Texture2D::Create("assets/textures/pikachu.png");
 		textureShader->Bind();
-		textureShader->UploadUniformInt("u_Texture", 0);
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	virtual void OnUpdate(KE::Timestep ts) override {
@@ -74,7 +79,7 @@ public:
 
 		auto flatColorShader = m_ShaderLibrary.Get("FlatColor");
 		flatColorShader->Bind();
-		flatColorShader->UploadUniformFloat3("u_Color", m_SquareColor);
+		flatColorShader->SetFloat4("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
@@ -99,7 +104,7 @@ public:
 
 	virtual void OnImGuiRender() override {
 		ImGui::Begin("Settings");
-		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 	}
 
@@ -116,7 +121,7 @@ private:
 
 	KE::OrthographicCameraController m_CameraController;
 
-	glm::vec3 m_SquareColor;
+	glm::vec4 m_SquareColor;
 };
 
 
@@ -126,7 +131,9 @@ private:
 class Sandbox : public KE::Application {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
+		//PushLayer(new Pong());
 	}
 
 	~Sandbox() {

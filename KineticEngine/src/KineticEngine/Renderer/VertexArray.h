@@ -17,7 +17,7 @@ namespace KE {
 
 		inline const Ref<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; }
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 
 	private:
 		std::vector<Ref<VertexBuffer>> m_VertexBuffers;

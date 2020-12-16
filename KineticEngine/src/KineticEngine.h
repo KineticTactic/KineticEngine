@@ -1,21 +1,22 @@
 #pragma once
 
-#include "KineticEngine/Application.h"
+#include "KineticEngine/Core/Application.h"
 
-#include "KineticEngine/MouseButtonCodes.h"
-#include "KineticEngine/KeyCodes.h"
+#include "KineticEngine/Core/MouseButtonCodes.h"
+#include "KineticEngine/Core/KeyCodes.h"
 #include "KineticEngine/Input/Input.h"
 
-#include "KineticEngine/Log.h"
-#include "KineticEngine/Layer.h"
+#include "KineticEngine/Core/Log.h"
+#include "KineticEngine/Core/Layer.h"
 
 #include "KineticEngine/Core/Timestep.h"
 
-#include "KineticEngine/OrthographicCameraController.h"
+#include "KineticEngine/Renderer/OrthographicCameraController.h"
 
 // ------ Renderer ------------------
 
 #include "KineticEngine/Renderer/Renderer.h"
+#include "KineticEngine/Renderer/Renderer2D.h"
 #include "KineticEngine/Renderer/RenderCommand.h"
 
 #include "KineticEngine/Renderer/Buffer.h"
@@ -26,6 +27,3 @@
 #include "KineticEngine/Renderer/OrthographicCamera.h"
 
 #include "KineticEngine/ImGui/ImGuiLayer.h"
-
-// Entry point
-#include "KineticEngine/EntryPoint.h"

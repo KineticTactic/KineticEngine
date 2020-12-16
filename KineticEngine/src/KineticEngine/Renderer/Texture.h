@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 
 namespace KE {
 	class Texture {

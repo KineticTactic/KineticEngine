@@ -140,23 +140,24 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\KineticEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\KineticEngine.h" />
-    <ClInclude Include="src\KineticEngine\Application.h" />
-    <ClInclude Include="src\KineticEngine\Core.h" />
+    <ClInclude Include="src\KineticEngine\Core\Application.h" />
+    <ClInclude Include="src\KineticEngine\Core\Core.h" />
     <ClInclude Include="src\KineticEngine\Core\Timestep.h" />
-    <ClInclude Include="src\KineticEngine\EntryPoint.h" />
+    <ClInclude Include="src\KineticEngine\Core\EntryPoint.h" />
     <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\KineticEngine\Events\Event.h" />
     <ClInclude Include="src\KineticEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\KineticEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\KineticEngine\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\KineticEngine\Input\Input.h" />
-    <ClInclude Include="src\KineticEngine\KeyCodes.h" />
-    <ClInclude Include="src\KineticEngine\Layer.h" />
-    <ClInclude Include="src\KineticEngine\LayerStack.h" />
-    <ClInclude Include="src\KineticEngine\Log.h" />
-    <ClInclude Include="src\KineticEngine\MouseButtonCodes.h" />
-    <ClInclude Include="src\KineticEngine\OrthographicCameraController.h" />
+    <ClInclude Include="src\KineticEngine\Core\KeyCodes.h" />
+    <ClInclude Include="src\KineticEngine\Core\Layer.h" />
+    <ClInclude Include="src\KineticEngine\Core\LayerStack.h" />
+    <ClInclude Include="src\KineticEngine\Core\Log.h" />
+    <ClInclude Include="src\KineticEngine\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\KineticEngine\Renderer\OrthographicCamera.h" />
@@ -584,14 +585,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\KineticEngine\Application.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\KineticEngine\Core\Application.cpp" />
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\KineticEngine\Input\Input.cpp" />
-    <ClCompile Include="src\KineticEngine\Layer.cpp" />
-    <ClCompile Include="src\KineticEngine\LayerStack.cpp" />
-    <ClCompile Include="src\KineticEngine\Log.cpp" />
-    <ClCompile Include="src\KineticEngine\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\KineticEngine\Core\Layer.cpp" />
+    <ClCompile Include="src\KineticEngine\Core\LayerStack.cpp" />
+    <ClCompile Include="src\KineticEngine\Core\Log.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\OrthographicCamera.cpp" />

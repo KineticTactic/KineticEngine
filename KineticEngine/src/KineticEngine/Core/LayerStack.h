@@ -1,7 +1,7 @@
 #pragma once
 
-#include "KineticEngine/Core.h"
-#include "Layer.h"
+#include "KineticEngine/Core/Core.h"
+#include "KineticEngine/Core/Layer.h"
 
 namespace KE {
 	class KE_API LayerStack {

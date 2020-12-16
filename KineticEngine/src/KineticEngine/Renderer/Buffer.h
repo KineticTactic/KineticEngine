@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 
 namespace KE {
 
@@ -105,7 +105,7 @@ namespace KE {
 		virtual const BufferLayout& GetLayout() const { return m_Layout; }
 		virtual void SetLayout(const BufferLayout& layout) { m_Layout = layout; }
 
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 
 	private:
 		uint32_t m_RendererID;
@@ -123,7 +123,7 @@ namespace KE {
 
 		uint32_t GetCount() const;
 
-		static IndexBuffer* Create(uint32_t* indices, uint32_t size);
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
 
 	private:
 		uint32_t m_RendererID;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 #include "KineticEngine/Events/Event.h"
 #include "KineticEngine/Core/Timestep.h"
 

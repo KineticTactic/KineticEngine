@@ -1,7 +1,7 @@
 #pragma once
 
 #include "KineticEngine/Renderer/GraphicsContext.h"
-#include "KineticEngine/Core.h"
+#include "KineticEngine/Core/Core.h"
 #include "KineticEngine/Events/Event.h"
 
 namespace KE {
