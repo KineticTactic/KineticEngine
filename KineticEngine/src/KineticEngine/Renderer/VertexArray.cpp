@@ -27,22 +27,28 @@ namespace KE {
 	}
 
 	VertexArray::VertexArray() {
+		KE_PROFILE_FUNCTION();
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
 	VertexArray::~VertexArray() {
-
+		KE_PROFILE_FUNCTION();
+		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void VertexArray::Bind() const {
+		KE_PROFILE_FUNCTION();
 		glBindVertexArray(m_RendererID);
 	}
 
 	void VertexArray::Unbind() const {
+		KE_PROFILE_FUNCTION();
 		glBindVertexArray(0);
 	}
 
 	void VertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) {
+		KE_PROFILE_FUNCTION();
+
 		KE_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
 		glBindVertexArray(m_RendererID);
@@ -65,6 +71,8 @@ namespace KE {
 	}
 
 	void VertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
+		KE_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();
 

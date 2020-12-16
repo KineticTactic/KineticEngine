@@ -18,7 +18,9 @@
 
 #include "KineticEngine/Core/Log.h"
 
-#ifdef KE_PLATFORM_WINDOW
+#include "KineticEngine/Debug/Instrumentor.h"
+
+#ifdef KE_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif
 

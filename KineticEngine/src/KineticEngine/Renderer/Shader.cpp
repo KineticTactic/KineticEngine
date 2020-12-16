@@ -20,6 +20,8 @@ namespace KE {
 
 
 	Shader::Shader(const std::string& filepath) {
+		KE_PROFILE_FUNCTION();
+
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
@@ -34,18 +36,23 @@ namespace KE {
 
 	Shader::Shader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 		:m_Name(name) {
+		KE_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
 		Compile(sources);
 	}
 
-	Shader::~Shader()
-	{
+	Shader::~Shader() {
+		KE_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_RendererID);
 	}
 
 	std::string Shader::ReadFile(const std::string& filepath) {
+		KE_PROFILE_FUNCTION();
+
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in) {
@@ -63,6 +70,8 @@ namespace KE {
 	}
 
 	std::unordered_map<GLenum, std::string> Shader::PreProcess(const std::string& source) {
+		KE_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const char* typeToken = "#type";
@@ -84,6 +93,8 @@ namespace KE {
 	}
 
 	void Shader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources) {
+		KE_PROFILE_FUNCTION();
+
 		GLuint program = glCreateProgram();
 
 		KE_CORE_ASSERT(shaderSources.size() <= 2, "We only support two shaders for now!");
@@ -153,10 +164,14 @@ namespace KE {
 
 
 	void Shader::Bind() const {
+		KE_PROFILE_FUNCTION();
+
 		glUseProgram(m_RendererID);
 	}
 
 	void Shader::Unbind() const {
+		KE_PROFILE_FUNCTION();
+
 		glUseProgram(0);
 	}
 

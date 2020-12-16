@@ -1376,6 +1376,7 @@
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\KineticEngine\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiBuild.cpp">

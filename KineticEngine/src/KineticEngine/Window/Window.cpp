@@ -15,10 +15,13 @@ namespace KE {
 	}
 
 	Window::Window(int width, int height, std::string title) {
+		KE_PROFILE_FUNCTION();
+
 		m_Data.Width = width;
 		m_Data.Height = height;
 
 		if (!glfwInitialized) {
+			KE_PROFILE_SCOPE("glfwInit");
 			if (!glfwInit()) {
 				KE_CORE_FATAL("GLFW Initialization Failed!");
 			}
@@ -27,7 +30,10 @@ namespace KE {
 		}
 
 		KE_CORE_INFO("Creating Window ({0}, {1})", width, height);
-		m_Window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+		{
+			KE_PROFILE_SCOPE("glfwCreateWindow");
+			m_Window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+		}
 		if (!m_Window) {
 			KE_CORE_FATAL("Window Creation Failed!");
 			glfwTerminate();
@@ -119,14 +125,19 @@ namespace KE {
 			data.EventCallback(event);
 			});
 
-		//glfwSwapInterval(0);
+		glfwSwapInterval(0);
 	}
 
 	Window::~Window() {
+		KE_PROFILE_FUNCTION();
+
+		glfwDestroyWindow(m_Window);
 		glfwTerminate();
 	}
 
 	void Window::OnUpdate() {
+		KE_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}

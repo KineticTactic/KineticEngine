@@ -12,6 +12,8 @@ namespace KE {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application() {
+		KE_PROFILE_FUNCTION();
+
 		KE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -29,6 +31,8 @@ namespace KE {
 	}
 
 	void Application::OnEvent(Event& e) {
+		KE_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -43,30 +47,44 @@ namespace KE {
 	}
 
 	void Application::PushLayer(Layer* layer) {
+		KE_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer) {
+		KE_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
 	}
 
 	void Application::Run() {
+		KE_PROFILE_FUNCTION();
+
 		while (m_Running) {
+			KE_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized) {
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+				{
+					KE_PROFILE_SCOPE("LayerStack Updates");
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
 			}
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
+			{
+				KE_PROFILE_SCOPE("LayerStack OnImGuiRender");
+				m_ImGuiLayer->Begin();
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+				m_ImGuiLayer->End();
+			}
 
 
 			m_Window->OnUpdate();
@@ -79,6 +97,8 @@ namespace KE {
 	}
 
 	bool Application::OnWindowResize(WindowResizeEvent& e) {
+		KE_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0) {
 			m_Minimized = true;
 			return false;

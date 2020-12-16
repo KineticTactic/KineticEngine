@@ -16,6 +16,8 @@ namespace KE {
 	}
 
 	void GraphicsContext::Init() {
+		KE_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		KE_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -32,8 +34,9 @@ namespace KE {
 		KE_CORE_ASSERT(versionMajor > 4 || (versionMajor == 4 && versionMinor >= 5), "Kinetic Engine requires at least OpenGL version 4.5");
 	}
 
-	void GraphicsContext::SwapBuffers()
-	{
+	void GraphicsContext::SwapBuffers() {
+		KE_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

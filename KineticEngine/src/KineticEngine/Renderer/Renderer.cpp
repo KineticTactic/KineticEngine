@@ -8,6 +8,7 @@ namespace KE {
 	Renderer::SceneData* Renderer::m_SceneData = new SceneData;
 
 	void Renderer::Init() {
+		KE_PROFILE_FUNCTION();
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
