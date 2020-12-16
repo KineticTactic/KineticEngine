@@ -2,6 +2,7 @@
 #include "Texture.h"
 
 #include <glad/glad.h>
+
 #include <stb_image.h>
 
 namespace KE {
@@ -25,6 +26,9 @@ namespace KE {
 			dataFormat = GL_RGB;
 		}
 
+		m_InternalFormat = internalFormat;
+		m_DataFormat = dataFormat;
+
 		KE_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
@@ -41,6 +45,20 @@ namespace KE {
 		stbi_image_free(data);
 	}
 
+	Texture2D::Texture2D(uint32_t width, uint32_t height)
+		: m_Width(width), m_Height(height) {
+		m_InternalFormat = GL_RGBA8, m_DataFormat = GL_RGBA;
+
+		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
+		glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height);
+
+		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	}
+
 	Texture2D::~Texture2D() {
 		glDeleteTextures(1, &m_RendererID);
 	}
@@ -53,12 +71,22 @@ namespace KE {
 		return m_Height;
 	}
 
+	void Texture2D::SetData(void* data, uint32_t size) {
+		uint32_t bpp = m_DataFormat == GL_RGBA ? 4 : 3;
+		KE_CORE_ASSERT(size == m_Width * m_Height * bpp, "Data must be the entire texture!");
+		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
+	}
+
 	void Texture2D::Bind(uint32_t slot) const {
 		glBindTextureUnit(slot, m_RendererID);
 	}
 
 	Ref<KE::Texture2D> Texture2D::Create(const std::string& path) {
-		return std::make_shared<Texture2D>(path);
+		return CreateRef<Texture2D>(path);
+	}
+
+	KE::Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height) {
+		return CreateRef<Texture2D>(width, height);
 	}
 
 }
