@@ -132,7 +132,7 @@ namespace KE {
 	};
 }
 
-#define KE_PROFILE 1
+//#define KE_PROFILE 1
 
 #if KE_PROFILE
 #define KE_PROFILE_BEGIN_SESSION(name, filepath) ::KE::Instrumentor::Get().BeginSession(name, filepath)

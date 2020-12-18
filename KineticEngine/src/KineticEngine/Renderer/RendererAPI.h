@@ -12,6 +12,6 @@ namespace KE {
 		void SetClearColor(const glm::vec4& color);
 		void Clear();
 
-		void DrawIndexed(const Ref<VertexArray>& vertexARray);
+		void DrawIndexed(const Ref<VertexArray>& vertexARray, uint32_t indexCount = 0);
 	};
 }

@@ -125,7 +125,7 @@ namespace KE {
 			data.EventCallback(event);
 			});
 
-		glfwSwapInterval(0);
+		//glfwSwapInterval(0);
 	}
 
 	Window::~Window() {

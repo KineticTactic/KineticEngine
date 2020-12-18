@@ -25,8 +25,9 @@ namespace KE {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void RendererAPI::DrawIndexed(const Ref<VertexArray>& vertexAray) {
-		glDrawElements(GL_TRIANGLES, vertexAray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+	void RendererAPI::DrawIndexed(const Ref<VertexArray>& vertexAray, uint32_t indexCount) {
+		uint32_t count = indexCount ? vertexAray->GetIndexBuffer()->GetCount() : indexCount;
+		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
 	}
 
 }

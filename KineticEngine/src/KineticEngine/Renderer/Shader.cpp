@@ -180,6 +180,11 @@ namespace KE {
 		glUniform1i(location, value);
 	}
 
+	void Shader::SetIntArray(const std::string& name, int* values, uint32_t count) {
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1iv(location, count, values);
+	}
+
 	void Shader::SetFloat(const std::string& name, float value) {
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1f(location, value);

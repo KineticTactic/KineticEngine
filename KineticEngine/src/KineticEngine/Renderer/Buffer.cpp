@@ -5,6 +5,14 @@
 
 namespace KE {
 
+	VertexBuffer::VertexBuffer(uint32_t size) {
+		KE_PROFILE_FUNCTION();
+
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+	}
+
 	VertexBuffer::VertexBuffer(float* vertices, uint32_t size) {
 		KE_PROFILE_FUNCTION();
 
@@ -29,6 +37,15 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	void VertexBuffer::SetData(const void* data, uint32_t size) {
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
+	}
+
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size) {
+		return std::make_shared<VertexBuffer>(size);
 	}
 
 	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size) {
@@ -67,8 +84,8 @@ namespace KE {
 		return m_Count;
 	}
 
-	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size) {
-		return std::make_shared<IndexBuffer>(indices, size);
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count) {
+		return std::make_shared<IndexBuffer>(indices, count);
 	}
 
 }

@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ParticleSystem.cpp" />
     <ClCompile Include="src\Pong\Paddle.cpp" />
     <ClCompile Include="src\Pong\Pong.cpp" />
     <ClCompile Include="src\Pong\Puck.cpp" />
@@ -147,6 +148,7 @@
     <None Include="assets\shaders\Texture.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ParticleSystem.h" />
     <ClInclude Include="src\Pong\Paddle.h" />
     <ClInclude Include="src\Pong\Pong.h" />
     <ClInclude Include="src\Pong\Puck.h" />

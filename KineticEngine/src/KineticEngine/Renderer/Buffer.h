@@ -96,6 +96,7 @@ namespace KE {
 
 	class VertexBuffer {
 	public:
+		VertexBuffer(uint32_t size);
 		VertexBuffer(float* vertices, uint32_t size);
 		~VertexBuffer();
 
@@ -105,6 +106,9 @@ namespace KE {
 		virtual const BufferLayout& GetLayout() const { return m_Layout; }
 		virtual void SetLayout(const BufferLayout& layout) { m_Layout = layout; }
 
+		virtual void SetData(const void* data, uint32_t size);
+
+		static Ref<VertexBuffer> Create(uint32_t size);
 		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 
 	private:
@@ -123,7 +127,7 @@ namespace KE {
 
 		uint32_t GetCount() const;
 
-		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 
 	private:
 		uint32_t m_RendererID;
