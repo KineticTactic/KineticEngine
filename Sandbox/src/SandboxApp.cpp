@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
-#include "Pong/Pong.h"
+//#include "Pong/Pong.h"
 
 class ExampleLayer : public KE::Layer {
 public:

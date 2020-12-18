@@ -22,6 +22,7 @@
 #include "KineticEngine/Renderer/Buffer.h"
 #include "KineticEngine/Renderer/Shader.h"
 #include "KineticEngine/Renderer/Texture.h"
+#include "KineticEngine/Renderer/SubTexture2D.h"
 #include "KineticEngine/Renderer/VertexArray.h"
 
 #include "KineticEngine/Renderer/OrthographicCamera.h"

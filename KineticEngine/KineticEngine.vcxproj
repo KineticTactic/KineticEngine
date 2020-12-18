@@ -166,6 +166,7 @@
     <ClInclude Include="src\KineticEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Texture.h" />
     <ClInclude Include="src\KineticEngine\Renderer\VertexArray.h" />
     <ClInclude Include="src\KineticEngine\Window\Window.h" />
@@ -602,6 +603,7 @@
     <ClCompile Include="src\KineticEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\KineticEngine\Window\Window.cpp" />

@@ -1377,6 +1377,7 @@
     <ClInclude Include="src\KineticEngine\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\KineticEngine\Debug\Instrumentor.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiBuild.cpp">
@@ -1438,5 +1439,6 @@
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

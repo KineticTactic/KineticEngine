@@ -14,6 +14,10 @@ void Sandbox2D::OnAttach() {
 	KE_PROFILE_FUNCTION();
 
 	m_Texture = KE::Texture2D::Create("assets/textures/Container.png");
+	m_Spritesheet = KE::Texture2D::Create("assets/textures/Spritesheet.png");
+
+	m_TextureVortex = KE::SubTexture2D::CreateFromCoords(m_Spritesheet, { 11, 6 }, { 128, 128 });
+	m_TextureDoor = KE::SubTexture2D::CreateFromCoords(m_Spritesheet, { 6, 0 }, { 128, 128 }, { 1, 2 });
 
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
@@ -45,7 +49,7 @@ void Sandbox2D::OnUpdate(KE::Timestep ts) {
 	}
 
 	KE::Renderer2D::ResetStats();
-	/*{
+	{
 		static float rotation = 0.f;
 		rotation += ts * 1.f;
 
@@ -54,8 +58,9 @@ void Sandbox2D::OnUpdate(KE::Timestep ts) {
 		KE::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.f });
 		KE::Renderer2D::DrawQuad({ 1.0f, 0.8f }, { 1.0f, 1.0f }, m_SquareColor);
 		KE::Renderer2D::DrawQuad({ -1.0f, -0.8f }, { 1.0f, 1.0f }, m_Texture, 10.f, { 0.6f, 1.0f, 0.8f , 1.f });
+		KE::Renderer2D::DrawQuad({ 0.0f, 2.f }, { 1.0f, 2.0f }, m_TextureDoor);
 		KE::Renderer2D::DrawRotatedQuad({ -1.0f, -0.8f }, { 0.4f, 0.4f }, rotation, m_SquareColor);
-		KE::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f }, { 1.f, 1.f }, 1.f, m_Texture);
+		KE::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f }, { 1.f, 1.f }, 1.f, m_TextureVortex);
 		//KE::Renderer2D::EndScene();
 
 		//KE::Renderer2D::BeginScene(m_CameraController.GetCamera());
@@ -66,13 +71,7 @@ void Sandbox2D::OnUpdate(KE::Timestep ts) {
 			}
 		}
 		KE::Renderer2D::EndScene();
-	}*/
-
-	KE::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	KE::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.f, 0.5f, 1.f, 1.f });
-
-	KE::Renderer2D::EndScene();
-
+	}
 
 	if (KE::Input::IsMouseButtonPressed(KE_MOUSE_BUTTON_LEFT)) {
 		auto [x, y] = KE::Input::GetMousePosition();
@@ -84,7 +83,7 @@ void Sandbox2D::OnUpdate(KE::Timestep ts) {
 		x = (x / width) * bounds.GetWidth() - bounds.GetWidth() * 0.5f;
 		y = bounds.GetHeight() * 0.5f - (y / height) * bounds.GetHeight();
 		m_Particle.Position = { x + pos.x, y + pos.y };
-		for (uint32_t i = 0; i < 100; i++)
+		for (uint32_t i = 0; i < 50; i++)
 			m_ParticleSystem.Emit(m_Particle);
 	}
 	//KE::RenderCommand::Clear();
