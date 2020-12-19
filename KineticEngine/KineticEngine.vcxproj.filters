@@ -10,6 +10,9 @@
     <Filter Include="src\KineticEngine\Core">
       <UniqueIdentifier>{7162C0C6-5D5C-E918-46C9-7F2932624F85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\KineticEngine\Debug">
+      <UniqueIdentifier>{AF0BD99E-1B43-2136-244D-85599003482F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\KineticEngine\Events">
       <UniqueIdentifier>{3DD4847D-29F9-D3FD-5244-B98D3EC8D21B}</UniqueIdentifier>
     </Filter>
@@ -54,8 +57,35 @@
     <ClInclude Include="src\KineticEngine.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Application.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Core.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\EntryPoint.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\KeyCodes.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Layer.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\LayerStack.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\Log.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Core\MouseButtonCodes.h">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Core\Timestep.h">
       <Filter>src\KineticEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Debug\Instrumentor.h">
+      <Filter>src\KineticEngine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Events\ApplicationEvent.h">
       <Filter>src\KineticEngine\Events</Filter>
@@ -78,10 +108,16 @@
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\Framebuffer.h">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\OrthographicCamera.h">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\OrthographicCameraController.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\RenderCommand.h">
@@ -90,10 +126,16 @@
     <ClInclude Include="src\KineticEngine\Renderer\Renderer.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\Renderer2D.h">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\RendererAPI.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\Shader.h">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\SubTexture2D.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\Texture.h">
@@ -1350,36 +1392,26 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\Application.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\Core.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\EntryPoint.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\KeyCodes.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\Layer.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\LayerStack.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\Log.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Core\MouseButtonCodes.h">
-      <Filter>src\KineticEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KineticEngine\Renderer\OrthographicCameraController.h" />
-    <ClInclude Include="src\KineticEngine\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\KineticEngine\Debug\Instrumentor.h" />
-    <ClInclude Include="src\KineticEngine\Renderer\SubTexture2D.h" />
+    <ClInclude Include="src\KineticEngine\Scene\Scene.h" />
+    <ClInclude Include="src\KineticEngine\Scene\Components.h" />
+    <ClInclude Include="src\KineticEngine\Scene\Entity.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\Camera.h" />
+    <ClInclude Include="src\KineticEngine\Scene\SceneCamera.h" />
+    <ClInclude Include="src\KineticEngine\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\KineticEngine\Core\Application.cpp">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Core\Layer.cpp">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Core\LayerStack.cpp">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Core\Log.cpp">
+      <Filter>src\KineticEngine\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\KineticEngine\ImGui\ImGuiBuild.cpp">
       <Filter>src\KineticEngine\ImGui</Filter>
     </ClCompile>
@@ -1392,10 +1424,16 @@
     <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\Framebuffer.cpp">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\OrthographicCamera.cpp">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\OrthographicCameraController.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\RenderCommand.cpp">
@@ -1404,10 +1442,16 @@
     <ClCompile Include="src\KineticEngine\Renderer\Renderer.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\Renderer2D.cpp">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\RendererAPI.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\Shader.cpp">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Renderer\SubTexture2D.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\Texture.cpp">
@@ -1425,20 +1469,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\Core\Application.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\Core\Layer.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\Core\LayerStack.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\Core\Log.cpp">
-      <Filter>src\KineticEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KineticEngine\Renderer\OrthographicCameraController.cpp" />
-    <ClCompile Include="src\KineticEngine\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\KineticEngine\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="src\KineticEngine\Scene\Scene.cpp" />
+    <ClCompile Include="src\KineticEngine\Scene\Entity.cpp" />
+    <ClCompile Include="src\KineticEngine\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

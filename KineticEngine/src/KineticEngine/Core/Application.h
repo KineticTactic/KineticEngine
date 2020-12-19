@@ -19,7 +19,7 @@ namespace KE {
 
 	class KE_API Application {
 	public:
-		Application();
+		Application(const std::string& name = "KineticEngine");
 		virtual ~Application();
 
 		void Run();
@@ -31,6 +31,10 @@ namespace KE {
 
 		inline static Application& Get() { return *s_Instance; }
 		inline Window& GetWindow() { return *m_Window; }
+
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+
+		void Close();
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);

@@ -19,9 +19,6 @@ public:
 private:
 	KE::OrthographicCameraController m_CameraController;
 
-	KE::Ref<KE::VertexArray> m_VertexArray;
-	KE::Ref<KE::Shader> m_FlatColoShader;
-
 	glm::vec4 m_SquareColor = { 0.f, 0.5f, 1.f, 1.f };
 
 	KE::Ref<KE::Texture2D> m_Texture;

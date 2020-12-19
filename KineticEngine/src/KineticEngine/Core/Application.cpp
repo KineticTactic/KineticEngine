@@ -11,13 +11,13 @@ namespace KE {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application() {
+	Application::Application(const std::string& name) {
 		KE_PROFILE_FUNCTION();
 
 		KE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create(1280, 720, "Kinetic Engine!"));
+		m_Window = std::unique_ptr<Window>(Window::Create(1280, 720, name));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();
@@ -58,6 +58,10 @@ namespace KE {
 
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
+	}
+
+	void Application::Close() {
+		m_Running = false;
 	}
 
 	void Application::Run() {

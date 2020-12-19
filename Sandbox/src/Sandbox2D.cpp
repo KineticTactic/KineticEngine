@@ -86,17 +86,15 @@ void Sandbox2D::OnUpdate(KE::Timestep ts) {
 		for (uint32_t i = 0; i < 50; i++)
 			m_ParticleSystem.Emit(m_Particle);
 	}
-	//KE::RenderCommand::Clear();
-	/*if (KE::Input::IsMouseButtonPressed(KE_MOUSE_BUTTON_LEFT)) {
-		m_Particle.Position = { 0.f, 0.f };
-		m_ParticleSystem.Emit(m_Particle);
-	}*/
+
 	m_ParticleSystem.OnUpdate(ts);
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
+
 }
 
 void Sandbox2D::OnImGuiRender() {
 	KE_PROFILE_FUNCTION();
+
 
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
@@ -109,7 +107,10 @@ void Sandbox2D::OnImGuiRender() {
 	ImGui::Text("Quads: %d", stats.QuadCount);
 	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+
+
 	ImGui::End();
+
 }
 
 void Sandbox2D::OnEvent(KE::Event& e) {

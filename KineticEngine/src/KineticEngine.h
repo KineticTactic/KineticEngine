@@ -13,6 +13,11 @@
 
 #include "KineticEngine/Renderer/OrthographicCameraController.h"
 
+#include "KineticEngine/Scene/Scene.h"
+#include "KineticEngine/Scene/Components.h"
+#include "KineticEngine/Scene/Entity.h"
+#include "KineticEngine/Scene/ScriptableEntity.h"
+
 // ------ Renderer ------------------
 
 #include "KineticEngine/Renderer/Renderer.h"
@@ -21,6 +26,7 @@
 
 #include "KineticEngine/Renderer/Buffer.h"
 #include "KineticEngine/Renderer/Shader.h"
+#include "KineticEngine/Renderer/Framebuffer.h"
 #include "KineticEngine/Renderer/Texture.h"
 #include "KineticEngine/Renderer/SubTexture2D.h"
 #include "KineticEngine/Renderer/VertexArray.h"
