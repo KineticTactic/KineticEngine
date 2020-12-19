@@ -2,6 +2,8 @@
 
 #include <KineticEngine.h>
 
+#include "Panels/SceneHierarchyPanel.h"
+
 namespace KE {
 
 	class EditorLayer : public Layer {
@@ -34,6 +36,9 @@ namespace KE {
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.f, 0.f };
+
+		// Panels
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 
 }

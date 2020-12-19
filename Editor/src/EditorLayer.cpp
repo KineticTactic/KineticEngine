@@ -31,6 +31,8 @@ namespace KE {
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
 		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.f, 1.f, 0.2f, 1.f });
 
+		m_ActiveScene->CreateEntity("Blue Square").AddComponent<SpriteRendererComponent>(glm::vec4{ 0.f, 0.5f, 1.0f, 1.f });
+
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
@@ -61,6 +63,8 @@ namespace KE {
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach() {
@@ -155,11 +159,13 @@ namespace KE {
 		}
 
 
+		m_SceneHierarchyPanel.OnImGuiRender();
 
-		ImGui::Begin("Settings");
+
+		ImGui::Begin("Engine Stats");
 
 		float fps = 1.f / m_Ts.GetSeconds();
-		ImGui::Text(std::to_string(fps).c_str());
+		ImGui::Text("FPS: %f", fps);
 
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");
@@ -168,8 +174,11 @@ namespace KE {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
+		ImGui::End();
 
-		ImGui::Separator();
+
+
+		ImGui::Begin("Settings");
 		ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
 		auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
@@ -178,9 +187,9 @@ namespace KE {
 		ImGui::Separator();
 		ImGui::DragFloat3("Camera Transform", glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]), 0.1f);
 		auto& camera = m_CameraEntity.GetComponent<CameraComponent>().Camera;
-		float orthoSize = camera.GetOrthoGraphicSize();
+		float orthoSize = camera.GetOrthographicSize();
 		if (ImGui::DragFloat("Camera Zoom", &orthoSize)) {
-			camera.SetOrthoGraphicSize(orthoSize);
+			camera.SetOrthographicSize(orthoSize);
 		}
 		ImGui::Separator();
 

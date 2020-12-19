@@ -36,7 +36,6 @@ namespace KE {
 					nsc.Instance->m_Entity = Entity{ entity, this };
 					nsc.Instance->OnCreate();
 				}
-				KE_CORE_TRACE("UPDATE");
 				nsc.Instance->OnUpdate(ts);
 				});
 		}
