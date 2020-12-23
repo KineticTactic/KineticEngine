@@ -16,11 +16,14 @@ IncludeDir["ImGui"] = "KineticEngine/vendor/imgui"
 IncludeDir["glm"] = "KineticEngine/vendor/glm"
 IncludeDir["stb_image"] = "KineticEngine/vendor/stb_image"
 IncludeDir["entt"] = "KineticEngine/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "KineticEngine/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "KineticEngine/vendor/ImGuizmo"
 
 group "Dependencies"
 	include "KineticEngine/vendor/GLFW"
 	include "KineticEngine/vendor/GLAD"
 	include "KineticEngine/vendor/imgui"
+	include "KineticEngine/vendor/yaml-cpp"
 
 group ""
 
@@ -45,6 +48,8 @@ project "KineticEngine"
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/ImGuizmo/ImGuizmo.h",
+		"%{prj.name}/vendor/ImGuizmo/ImGuizmo.cpp",
 	}
 
 	includedirs {
@@ -55,15 +60,21 @@ project "KineticEngine"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links {
 		"GLFW",
 		"GLAD",
 		"ImGui",
+		"yaml-cpp",
 		"opengl32.lib"
 	}
+
+	filter "files:KineticEngine/vendor/ImGuizmo/ImGuizmo.cpp"
+	flags { "NoPCH" }
 
 	filter "system:windows"
 		systemversion "latest"
@@ -163,7 +174,8 @@ project "Editor"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glm}",
 		"KineticEngine/vendor",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"KineticEngine/vendor/ImGuizmo"
 	}
 
 	links {

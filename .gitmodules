@@ -7,3 +7,9 @@
 [submodule "KineticEngine/vendor/glm"]
 	path = KineticEngine/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "KineticEngine/vendor/yaml-cpp"]
+	path = KineticEngine/vendor/yaml-cpp
+	url = https://github.com/thecherno/yaml-cpp
+[submodule "KineticEngine/vendor/ImGuizmo"]
+	path = KineticEngine/vendor/ImGuizmo
+	url = https://github.com/thecherno/imguizmo

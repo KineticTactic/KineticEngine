@@ -25,11 +25,20 @@
     <Filter Include="src\KineticEngine\Renderer">
       <UniqueIdentifier>{3FE605E9-2BF6-B1B9-94AF-16D880DEA052}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\KineticEngine\Scene">
+      <UniqueIdentifier>{566EE79F-C2A5-2F37-CBAF-935A37665630}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\KineticEngine\Utils">
+      <UniqueIdentifier>{990215A0-053A-5D37-0E44-C15A7AFA8330}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\KineticEngine\Window">
       <UniqueIdentifier>{40359BA6-2C5A-EA26-55A5-CFB64129E944}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGuizmo">
+      <UniqueIdentifier>{73BF7F4C-DF4A-ED10-E85B-700554664911}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
@@ -108,6 +117,9 @@
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Renderer\Camera.h">
+      <Filter>src\KineticEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\Framebuffer.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
@@ -144,11 +156,35 @@
     <ClInclude Include="src\KineticEngine\Renderer\VertexArray.h">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\KineticEngine\Scene\Components.h">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Scene\Entity.h">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Scene\Scene.h">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Scene\SceneCamera.h">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Scene\SceneSerializer.h">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Scene\ScriptableEntity.h">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Utils\PlatformUtils.h">
+      <Filter>src\KineticEngine\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="src\KineticEngine\Window\Window.h">
       <Filter>src\KineticEngine\Window</Filter>
     </ClInclude>
     <ClInclude Include="src\kepch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -1392,12 +1428,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Scene\Scene.h" />
-    <ClInclude Include="src\KineticEngine\Scene\Components.h" />
-    <ClInclude Include="src\KineticEngine\Scene\Entity.h" />
-    <ClInclude Include="src\KineticEngine\Renderer\Camera.h" />
-    <ClInclude Include="src\KineticEngine\Scene\SceneCamera.h" />
-    <ClInclude Include="src\KineticEngine\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\KineticEngine\Math\Math.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Core\Application.cpp">
@@ -1460,17 +1491,33 @@
     <ClCompile Include="src\KineticEngine\Renderer\VertexArray.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\KineticEngine\Scene\Entity.cpp">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Scene\Scene.cpp">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Scene\SceneCamera.cpp">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Scene\SceneSerializer.cpp">
+      <Filter>src\KineticEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Utils\PlatformUtils.cpp">
+      <Filter>src\KineticEngine\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="src\KineticEngine\Window\Window.cpp">
       <Filter>src\KineticEngine\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\kepch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
+    </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\Scene\Scene.cpp" />
-    <ClCompile Include="src\KineticEngine\Scene\Entity.cpp" />
-    <ClCompile Include="src\KineticEngine\Scene\SceneCamera.cpp" />
+    <ClCompile Include="src\KineticEngine\Math\Math.cpp" />
   </ItemGroup>
 </Project>

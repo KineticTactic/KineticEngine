@@ -2,7 +2,13 @@
 
 #include <imgui/imgui.h>
 #include <glm/gtc/type_ptr.hpp> 
-#include <glm/gtc/random.hpp>
+
+#include <ImGuizmo.h>
+
+#include "KineticEngine/Scene/SceneSerializer.h"
+#include "KineticEngine/Utils/PlatformUtils.h"
+#include "KineticEngine/Core/Core.h"
+#include "KineticEngine/Math/Math.h"
 
 namespace KE {
 
@@ -28,6 +34,7 @@ namespace KE {
 
 		m_ActiveScene = CreateRef<Scene>();
 
+#if 0
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
 		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.f, 1.f, 0.2f, 1.f });
 
@@ -48,23 +55,25 @@ namespace KE {
 			}
 
 			void OnUpdate(Timestep ts) {
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& translation = GetComponent<TransformComponent>().Translation;
 				float speed = 5.0f;
 
 				if (Input::IsKeyPressed(KE_KEY_A))
-					transform[3][0] -= speed * ts;
+					translation.x -= speed * ts;
 				if (Input::IsKeyPressed(KE_KEY_D))
-					transform[3][0] += speed * ts;
+					translation.x += speed * ts;
 				if (Input::IsKeyPressed(KE_KEY_W))
-					transform[3][1] += speed * ts;
+					translation.y += speed * ts;
 				if (Input::IsKeyPressed(KE_KEY_S))
-					transform[3][1] -= speed * ts;
+					translation.y -= speed * ts;
 			}
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+#endif
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
 	}
 
 	void EditorLayer::OnDetach() {
@@ -141,16 +150,30 @@ namespace KE {
 
 		// DockSpace
 		ImGuiIO& io = ImGui::GetIO();
+		ImGuiStyle& style = ImGui::GetStyle();
+		float minWinSizeX = style.WindowMinSize.x;
+		style.WindowMinSize.x = 370.0f;
 		if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
 		{
 			ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
 			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
 		}
 
+		style.WindowMinSize.x = minWinSizeX;
+
 		if (ImGui::BeginMenuBar())
 		{
 			if (ImGui::BeginMenu("File"))
 			{
+				if (ImGui::MenuItem("New", "Ctrl+N"))
+					NewScene();
+
+				if (ImGui::MenuItem("Open...", "Ctrl+O"))
+					OpenScene();
+
+				if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+					SaveSceneAs();
+
 				if (ImGui::MenuItem("Quit")) Application::Get().Close();
 				ImGui::EndMenu();
 			}
@@ -178,33 +201,13 @@ namespace KE {
 
 
 
-		ImGui::Begin("Settings");
-		ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
-		auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
-		ImGui::Separator();
-
-		ImGui::Separator();
-		ImGui::DragFloat3("Camera Transform", glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]), 0.1f);
-		auto& camera = m_CameraEntity.GetComponent<CameraComponent>().Camera;
-		float orthoSize = camera.GetOrthographicSize();
-		if (ImGui::DragFloat("Camera Zoom", &orthoSize)) {
-			camera.SetOrthographicSize(orthoSize);
-		}
-		ImGui::Separator();
-
-
-		ImGui::End();
-
-
-
 		// Viewport Panel
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
 
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
-		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
 
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
@@ -214,6 +217,52 @@ namespace KE {
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+
+
+		// GIZMOS
+		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
+		if (selectedEntity && m_GizmoType != -1) {
+			ImGuizmo::SetOrthographic(false);
+			ImGuizmo::SetDrawlist();
+
+			float windowWidth = (float)ImGui::GetWindowWidth();
+			float windowHeight = (float)ImGui::GetWindowHeight();
+			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+
+			// Camera
+			auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
+			const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
+			const glm::mat4& cameraProjection = camera.GetProjection();
+			glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+
+			// Entity Transform
+			auto& tc = selectedEntity.GetComponent<TransformComponent>();
+			glm::mat4& transform = tc.GetTransform();
+
+			// Snapping
+			bool snap = Input::IsKeyPressed(KE_KEY_LEFT_CONTROL);
+			float snapValue = 0.5f;
+			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
+				snapValue = 45.f;
+			float snapValues[3] = { snapValue,snapValue ,snapValue };
+
+			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snapValues : nullptr);
+
+			if (ImGuizmo::IsUsing()) {
+				glm::vec3 translation, rotation, scale;
+				Math::DecomposeTransform(transform, translation, rotation, scale);
+
+				glm::vec3 deltaRotation = rotation - tc.Rotation;
+				tc.Translation = translation;
+				tc.Rotation += deltaRotation;
+				tc.Scale = scale;
+			}
+		}
+
+
+
+
 		ImGui::End();
 		ImGui::PopStyleVar();
 
@@ -224,6 +273,76 @@ namespace KE {
 
 	void EditorLayer::OnEvent(Event& e) {
 		m_CameraController.OnEvent(e);
+
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<KeyPressedEvent>(KE_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+	}
+
+
+	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e) {
+		if (e.GetRepeatCount() > 0)
+			return false;
+
+		bool control = Input::IsKeyPressed(KE_KEY_LEFT_CONTROL) || Input::IsKeyPressed(KE_KEY_RIGHT_CONTROL);
+		bool shift = Input::IsKeyPressed(KE_KEY_LEFT_SHIFT) || Input::IsKeyPressed(KE_KEY_RIGHT_SHIFT);
+		switch (e.GetKeyCode()) {
+		case KE_KEY_N: {
+			if (control)
+				NewScene();
+			break;
+		}
+
+		case KE_KEY_O: {
+			if (control)
+				OpenScene();
+			break;
+		}
+
+
+		case KE_KEY_S: {
+			if (control && shift)
+				SaveSceneAs();
+			m_GizmoType = ImGuizmo::OPERATION::SCALE;
+			break;
+		}
+
+		case KE_KEY_A:
+			m_GizmoType = -1;
+			break;
+		case KE_KEY_G:
+			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
+			break;
+		case KE_KEY_R:
+			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
+			break;
+
+		}
+	}
+
+	void EditorLayer::NewScene() {
+		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+	}
+
+	void EditorLayer::OpenScene() {
+		std::string filepath = FileDialogs::OpenFile("Hazel Scene (*.kesc)\0*.kesc\0");
+		if (!filepath.empty()) {
+			m_ActiveScene = CreateRef<Scene>();
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Deserialize(filepath);
+		}
+	}
+
+	void EditorLayer::SaveSceneAs() {
+		std::string filepath = FileDialogs::SaveFile("Hazel Scene (*.kesc)\0*.kesc\0");
+		if (!filepath.empty()) {
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Serialize(filepath);
+		}
 	}
 
 }
