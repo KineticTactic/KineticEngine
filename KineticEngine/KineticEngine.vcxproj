@@ -160,6 +160,7 @@
     <ClInclude Include="src\KineticEngine\Math\Math.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Camera.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\EditorCamera.h" />
     <ClInclude Include="src\KineticEngine\Renderer\Framebuffer.h" />
     <ClInclude Include="src\KineticEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\KineticEngine\Renderer\OrthographicCamera.h" />
@@ -607,6 +608,7 @@
     <ClCompile Include="src\KineticEngine\Input\Input.cpp" />
     <ClCompile Include="src\KineticEngine\Math\Math.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\KineticEngine\Renderer\OrthographicCamera.cpp" />

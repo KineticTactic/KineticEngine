@@ -4,6 +4,8 @@
 
 #include "Panels/SceneHierarchyPanel.h"
 
+#include "KineticEngine/Renderer/EditorCamera.h"
+
 namespace KE {
 
 	class EditorLayer : public Layer {
@@ -40,6 +42,8 @@ namespace KE {
 		Ref<SubTexture2D> m_TextureVortex, m_TextureDoor;
 
 		Timestep m_Ts;
+
+		EditorCamera m_EditorCamera;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.f, 0.f };

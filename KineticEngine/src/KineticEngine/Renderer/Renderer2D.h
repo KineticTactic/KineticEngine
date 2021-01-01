@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Texture.h"
 #include "SubTexture2D.h"
+#include "EditorCamera.h"
 
 namespace KE {
 	class Renderer2D {
@@ -12,8 +13,10 @@ namespace KE {
 		static void Shutdown();
 
 		static void BeginScene(const Camera& camera, const glm::mat4& transform);
+		static void BeginScene(const EditorCamera& camera);
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
+		static void StartBatch();
 		static void Flush();
 
 		// Flat Color 
@@ -59,6 +62,6 @@ namespace KE {
 		static Statistics GetStats();
 
 	private:
-		static void FlushAndReset();
+		static void NextBatch();
 	};
 }

@@ -98,9 +98,15 @@ namespace KE {
 		s_Data.QuadVertexPositions[3] = { -0.5f,  0.5f,0.0f,1.0f };
 	}
 
+
+
 	void Renderer2D::Shutdown() {
 		KE_PROFILE_FUNCTION();
+
+		delete[] s_Data.QuadVertexBufferBase;
 	}
+
+
 
 	void Renderer2D::BeginScene(const Camera& camera, const glm::mat4& transform) {
 		KE_PROFILE_FUNCTION();
@@ -110,15 +116,11 @@ namespace KE {
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
 
-		for (uint32_t i = 0; i < s_Data.MaxVertices; i++) {
-			s_Data.QuadVertexBufferBase[i].Position = { 0.f, 0.f, 0.f };
-		}
-
-		s_Data.QuadIndexCount = 0;
-		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
-
-		s_Data.TextureSlotIndex = 1;
+		StartBatch();
 	}
+
+
+
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera) {
 		KE_PROFILE_FUNCTION();
@@ -126,33 +128,50 @@ namespace KE {
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 
-		for (uint32_t i = 0; i < s_Data.MaxVertices; i++) {
-			s_Data.QuadVertexBufferBase[i].Position = { 0.f, 0.f, 0.f };
-		}
+		StartBatch();
+	}
 
+
+
+	void Renderer2D::BeginScene(const EditorCamera& camera) {
+		KE_PROFILE_FUNCTION();
+
+		glm::mat4 viewProj = camera.GetViewProjection();
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		StartBatch();
+	}
+
+
+
+	void Renderer2D::EndScene() {
+		KE_PROFILE_FUNCTION();
+
+		Flush();
+
+	}
+
+
+
+
+	void Renderer2D::StartBatch() {
 		s_Data.QuadIndexCount = 0;
 		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
 
 		s_Data.TextureSlotIndex = 1;
 	}
 
-	void Renderer2D::EndScene() {
-		KE_PROFILE_FUNCTION();
 
-		uint32_t dataSize = (uint32_t)((uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase);
-		//KE_TRACE(dataSize);
-		s_Data.QuadVertexBuffer->SetData(s_Data.QuadVertexBufferBase, dataSize);
 
-		for (uint32_t i = 0; i < s_Data.MaxVertices; i++) {
-			s_Data.QuadVertexBufferBase[i].Position = glm::vec3(0.f, 0.f, 0.f);
-		}
-
-		Flush();
-	}
 
 	void Renderer2D::Flush() {
 		if (s_Data.QuadIndexCount == 0)
 			return;
+
+		uint32_t dataSize = (uint32_t)((uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase);
+		s_Data.QuadVertexBuffer->SetData(s_Data.QuadVertexBufferBase, dataSize);
 
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++) {
 			s_Data.TextureSlots[i]->Bind(i);
@@ -162,14 +181,15 @@ namespace KE {
 		s_Data.Stats.DrawCalls++;
 	}
 
-	void Renderer2D::FlushAndReset() {
+
+
+
+	void Renderer2D::NextBatch() {
 		EndScene();
-
-		s_Data.QuadIndexCount = 0;
-		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
-
-		s_Data.TextureSlotIndex = 1;
+		StartBatch();
 	}
+
+
 
 
 	// ----------------- FLAT COLORED QUAD ----------------------------------------------------------------------------------------------
@@ -209,7 +229,7 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) {
-			FlushAndReset();
+			NextBatch();
 		}
 
 		constexpr glm::vec4 color(1.f);
@@ -253,7 +273,7 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) {
-			FlushAndReset();
+			NextBatch();
 		}
 
 		const float textureIndex = 0.0f;
@@ -282,7 +302,7 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) {
-			FlushAndReset();
+			NextBatch();
 		}
 
 		constexpr glm::vec4 color(1.f);
@@ -330,7 +350,7 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) {
-			FlushAndReset();
+			NextBatch();
 		}
 
 		const float texIndex = 0.0f;
@@ -370,7 +390,7 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) {
-			FlushAndReset();
+			NextBatch();
 		}
 
 		constexpr glm::vec4 color(1.f);
@@ -421,7 +441,7 @@ namespace KE {
 		KE_PROFILE_FUNCTION();
 
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) {
-			FlushAndReset();
+			NextBatch();
 		}
 
 		constexpr glm::vec4 color(1.f);

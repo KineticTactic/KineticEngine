@@ -22,6 +22,9 @@
     <Filter Include="src\KineticEngine\Input">
       <UniqueIdentifier>{38B1389F-A4E8-8036-ADF2-E45919A9A72F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\KineticEngine\Math">
+      <UniqueIdentifier>{F2A2C5C6-DE9C-EE18-C709-8529B3A25485}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\KineticEngine\Renderer">
       <UniqueIdentifier>{3FE605E9-2BF6-B1B9-94AF-16D880DEA052}</UniqueIdentifier>
     </Filter>
@@ -113,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Input\Input.h">
       <Filter>src\KineticEngine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KineticEngine\Math\Math.h">
+      <Filter>src\KineticEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="src\KineticEngine\Renderer\Buffer.h">
       <Filter>src\KineticEngine\Renderer</Filter>
@@ -1428,7 +1434,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\KineticEngine\Math\Math.h" />
+    <ClInclude Include="src\KineticEngine\Renderer\EditorCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KineticEngine\Core\Application.cpp">
@@ -1451,6 +1457,9 @@
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Input\Input.cpp">
       <Filter>src\KineticEngine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KineticEngine\Math\Math.cpp">
+      <Filter>src\KineticEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\KineticEngine\Renderer\Buffer.cpp">
       <Filter>src\KineticEngine\Renderer</Filter>
@@ -1518,6 +1527,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\KineticEngine\Math\Math.cpp" />
+    <ClCompile Include="src\KineticEngine\Renderer\EditorCamera.cpp" />
   </ItemGroup>
 </Project>
