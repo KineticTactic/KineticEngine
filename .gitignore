@@ -1,12 +1,18 @@
 # Directories
-.vs
-bin
-bin-int
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+
+**/bin/
+!vendor/premake/bin/
+bin-int/
 
 # Files
 *.user
 **/imgui.ini
 
-**/KEProfile-Runtime.json
-**/KEProfile-Shutdown.json
-**/KEProfile-Startup.json
+KEProfile-Runtime.json
+KEProfile-Shutdown.json
+Sandbox/KEProfile-Startup.json
