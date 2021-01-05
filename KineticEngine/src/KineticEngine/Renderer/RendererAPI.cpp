@@ -5,7 +5,37 @@
 
 namespace KE {
 
+	void OpenGLMessageCallback(
+		unsigned source,
+		unsigned type,
+		unsigned id,
+		unsigned severity,
+		int length,
+		const char* message,
+		const void* userParam)
+	{
+		switch (severity)
+		{
+		case GL_DEBUG_SEVERITY_HIGH:         KE_CORE_CRITICAL(message); return;
+		case GL_DEBUG_SEVERITY_MEDIUM:       KE_CORE_ERROR(message); return;
+		case GL_DEBUG_SEVERITY_LOW:          KE_CORE_WARN(message); return;
+		case GL_DEBUG_SEVERITY_NOTIFICATION: KE_CORE_TRACE(message); return;
+		}
+
+		KE_CORE_ASSERT(false, "Unknown severity level!");
+	}
+
 	void RendererAPI::Init() {
+		KE_PROFILE_FUNCTION();
+
+#ifdef KE_DEBUG
+		glEnable(GL_DEBUG_OUTPUT);
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+		glDebugMessageCallback(OpenGLMessageCallback, nullptr);
+
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
+#endif
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -28,6 +58,7 @@ namespace KE {
 	void RendererAPI::DrawIndexed(const Ref<VertexArray>& vertexAray, uint32_t indexCount) {
 		uint32_t count = indexCount ? vertexAray->GetIndexBuffer()->GetCount() : indexCount;
 		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 }

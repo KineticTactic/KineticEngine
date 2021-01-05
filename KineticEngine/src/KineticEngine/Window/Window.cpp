@@ -23,7 +23,7 @@ namespace KE {
 		if (!glfwInitialized) {
 			KE_PROFILE_SCOPE("glfwInit");
 			if (!glfwInit()) {
-				KE_CORE_FATAL("GLFW Initialization Failed!");
+				KE_CORE_CRITICAL("GLFW Initialization Failed!");
 			}
 			glfwSetErrorCallback(GLFWErrorCallback);
 			glfwInitialized = true;
@@ -35,7 +35,7 @@ namespace KE {
 			m_Window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 		}
 		if (!m_Window) {
-			KE_CORE_FATAL("Window Creation Failed!");
+			KE_CORE_CRITICAL("Window Creation Failed!");
 			glfwTerminate();
 		}
 
